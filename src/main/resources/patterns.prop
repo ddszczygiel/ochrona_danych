@@ -1,0 +1,2 @@
+PAT1=.*ERROR.*
+PAT2=.*FATAL.*
