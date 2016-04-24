@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import pl.agh.ochd.domain.LogSample;
 import pl.agh.ochd.domain.ResourceId;
 import pl.agh.ochd.infrastructure.ElasticsearchPersistenceService;
-import pl.agh.ochd.persistence.PersistenceService;
+import pl.agh.ochd.infrastructure.PersistenceService;
 
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
@@ -14,9 +14,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-/**
- * @author mciolek
- */
+
 public class Main {
 
     private static Date toDate(LocalDateTime time) {
@@ -24,6 +22,7 @@ public class Main {
     }
 
     public static void main(String args[]) throws UnknownHostException {
+
         PersistenceService service = new ElasticsearchPersistenceService("192.168.99.100", 9300);
         LocalDateTime now = LocalDateTime.now();
         LogSample sample1 = new LogSample(toDate(now), "Kot");
@@ -35,6 +34,5 @@ public class Main {
 
         Collection<LogSample> result = service.loadLogs(new ResourceId("test"), toDate(now.minusDays(1)), toDate(now.plusDays(1)), Optional.of(pattern));
         result.forEach(log -> System.out.println(String.format("%s -> %s", log.getTime(), log.getMessage())));
-
     }
 }
