@@ -1,6 +1,9 @@
 package pl.agh.ochd.connectors;
 
 
+import com.typesafe.config.Config;
+
+import java.util.Date;
 import java.util.Map;
 
 public class RemoteHost {
@@ -12,19 +15,17 @@ public class RemoteHost {
     private String logPath;
     private String logFile;
     private String logDateFormat;
+    private String logDatePattern;
+    private Date lastReceivedLogDate;
     private Map<String, String> properties;
 
-    public RemoteHost(String hostName, String userName, String passwd, String logPath, String logFile,
-                      String logDateFormat, ConnectorType connectorType ,Map<String, String> properties) {
+    public RemoteHost(Config params) {
 
-        this.connectorType = connectorType;
-        this.hostName = hostName;
-        this.userName = userName;
-        this.passwd = passwd;
-        this.logPath = logPath;
-        this.logFile = logFile;
-        this.logDateFormat = logDateFormat;
-        this.properties = properties;
+        // TODO
+    }
+
+    public ConnectorType getConnectorType() {
+        return connectorType;
     }
 
     public String getHostName() {
@@ -51,8 +52,12 @@ public class RemoteHost {
         return logDateFormat;
     }
 
-    public ConnectorType getConnectorType() {
-        return connectorType;
+    public String getLogDatePattern() {
+        return logDatePattern;
+    }
+
+    public Date getLastReceivedLogDate() {
+        return lastReceivedLogDate;
     }
 
     public Map<String, String> getProperties() {

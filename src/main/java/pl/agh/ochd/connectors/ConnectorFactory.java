@@ -6,7 +6,7 @@ public final class ConnectorFactory {
     private ConnectorFactory() {}
 
     // move it to Connector and make it as abstract ??
-    public static Connector getConnector(RemoteHost remoteHost) throws Exception {
+    public static Connector getConnector(RemoteHost remoteHost) {
 
         switch (remoteHost.getConnectorType()) {
 
@@ -17,7 +17,7 @@ public final class ConnectorFactory {
             case HTTP:
                 return new SSHConnector(remoteHost);
             default:
-                throw new Exception("No such connector type !");
+                throw new IllegalStateException("Invalid requested connector type");
         }
     }
 }

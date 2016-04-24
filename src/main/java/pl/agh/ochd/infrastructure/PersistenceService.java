@@ -1,4 +1,4 @@
-package pl.agh.ochd.persistence;
+package pl.agh.ochd.infrastructure;
 
 
 import pl.agh.ochd.domain.LogSample;
@@ -23,7 +23,7 @@ public interface PersistenceService {
     void saveLogs(ResourceId id, Collection<LogSample> logs);
 
     /**
-     * Use in order to load logs within specified reange of time. If there is no pattern, all samples will be returned.
+     * Use in order to load logs within specified time. If there is no pattern, all samples will be returned.
      *
      * @param id      monitored resource id
      * @param from    the begin of time range

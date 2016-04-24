@@ -6,7 +6,7 @@ import pl.agh.ochd.connectors.MockConnector;
 import pl.agh.ochd.domain.LogSample;
 import pl.agh.ochd.domain.ResourceId;
 import pl.agh.ochd.infrastructure.ElasticsearchPersistenceService;
-import pl.agh.ochd.persistence.PersistenceService;
+import pl.agh.ochd.infrastructure.PersistenceService;
 
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -17,9 +17,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-/**
- * @author mciolek
- */
+
 public class Main {
 
 

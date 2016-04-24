@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.agh.ochd.domain.LogSample;
 import pl.agh.ochd.domain.ResourceId;
-import pl.agh.ochd.persistence.PersistenceService;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -29,10 +28,9 @@ import java.util.regex.Pattern;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-/**
- * @author mciolek
- */
+
 public class ElasticsearchPersistenceService implements PersistenceService {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchPersistenceService.class);
     private final Client client;
 
@@ -43,6 +41,7 @@ public class ElasticsearchPersistenceService implements PersistenceService {
 
     @Override
     public void saveLogs(ResourceId id, Collection<LogSample> logs) {
+
         logs.forEach(sample -> {
             XContentBuilder builder = null;
             try {

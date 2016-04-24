@@ -9,8 +9,8 @@ import java.util.Date;
  * Used in order to wrap single log line into domain object.
  */
 public class LogSample {
-    private final Date time;
 
+    private final Date time;
     private final String message;
 
     /**
@@ -18,6 +18,7 @@ public class LogSample {
      * @param message the single line of logs.
      */
     public LogSample(Date time, String message) {
+
         if (time == null) {
             throw new IllegalArgumentException("Time cannot be null.");
         }
