@@ -68,7 +68,7 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>${elastic.version}}</version>
+            <version>${elastic.version}</version>
         </dependency>
 
         <dependency>
