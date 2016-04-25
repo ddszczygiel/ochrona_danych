@@ -4,6 +4,7 @@ package pl.agh.ochd.connectors;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import pl.agh.ochd.model.RemoteHost;
 
 import java.io.IOException;
 import java.io.InputStream;

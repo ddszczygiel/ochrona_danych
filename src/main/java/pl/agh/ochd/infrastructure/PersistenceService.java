@@ -1,8 +1,8 @@
 package pl.agh.ochd.infrastructure;
 
 
-import pl.agh.ochd.domain.LogSample;
-import pl.agh.ochd.domain.ResourceId;
+import pl.agh.ochd.model.LogSample;
+import pl.agh.ochd.model.ResourceId;
 
 import java.util.Collection;
 import java.util.Date;

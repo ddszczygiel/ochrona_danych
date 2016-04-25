@@ -11,11 +11,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * @author majaschaefer
- */
-public class MockConnector implements Connector {
 
+public class MockConnector implements Connector {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MockConnector.class);
 
@@ -23,22 +20,20 @@ public class MockConnector implements Connector {
     private boolean firstTime = true;
     private int offset = 0;
 
-
     public MockConnector(String path) {
         this.path = path;
-
-
     }
 
     @Override
     public Optional<List<String>> getLogs() {
+
+
         try {
             Stream<String> stream = Files.lines(Paths.get(path)).skip(offset);
             if(firstTime) {
-                stream = stream.limit(100);
+                stream = stream.limit(50);
                 firstTime = false;
-                offset = offset + 100;
-
+                offset = offset + 50;
             } else {
                 stream = stream.limit(20);
                 offset = offset + 20;
@@ -52,9 +47,8 @@ public class MockConnector implements Connector {
             }
 
         } catch (IOException e) {
-            LOGGER.error("Error while reading from file!",e);
+            LOGGER.error("Error while reading from file!", e);
             return Optional.empty();
         }
-
     }
 }

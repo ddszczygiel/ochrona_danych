@@ -2,6 +2,7 @@ package pl.agh.ochd.connectors;
 
 import okhttp3.*;
 import org.apache.commons.io.IOUtils;
+import pl.agh.ochd.model.RemoteHost;
 
 import java.io.IOException;
 import java.util.ArrayList;

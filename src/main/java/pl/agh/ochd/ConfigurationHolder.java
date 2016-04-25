@@ -3,7 +3,7 @@ package pl.agh.ochd;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigValue;
-import pl.agh.ochd.connectors.RemoteHost;
+import pl.agh.ochd.model.RemoteHost;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -14,18 +14,20 @@ public class ConfigurationHolder {
     private Map<String, String> emails;
     private Map<String, Pattern> patterns;
     private List<RemoteHost> hosts;
-    private String emailHost;
     private String emailAddress;
+    private String emailLogin;
+    private String emailPassword;
 
 
     public ConfigurationHolder(Config configuration) {
 
         this.emails = configToStringMap(configuration.getConfig("configuration.emails"));
         this.patterns = preparePatternMap(configuration.getConfig("configuration.patterns"));
-        this.hosts = prepareHosts(configuration.getConfigList("configuration.remote.hosts"));
-        this.emailHost = configuration.getString("configuration.email.host");
+        // TODO uncomment
+//        this.hosts = prepareHosts(configuration.getConfigList("configuration.remote.hosts"));
         this.emailAddress = configuration.getString("configuration.email.address");
-
+        this.emailLogin = configuration.getString("configuration.email.login");
+        this.emailPassword = configuration.getString("configuration.email.password");
     }
 
     private Map<String, String> configToStringMap(Config config) {
@@ -63,11 +65,15 @@ public class ConfigurationHolder {
         return hosts;
     }
 
-    public String getEmailHost() {
-        return emailHost;
-    }
-
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public String getEmailLogin() {
+        return emailLogin;
+    }
+
+    public String getEmailPassword() {
+        return emailPassword;
     }
 }

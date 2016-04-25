@@ -3,6 +3,7 @@ package pl.agh.ochd.connectors;
 
 import com.jcabi.ssh.SSH;
 import com.jcabi.ssh.Shell;
+import pl.agh.ochd.model.RemoteHost;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

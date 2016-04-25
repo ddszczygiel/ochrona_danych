@@ -1,7 +1,7 @@
 package pl.agh.ochd.logs;
 
 
-import pl.agh.ochd.domain.LogSample;
+import pl.agh.ochd.model.LogSample;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,5 +70,25 @@ public class LogHelper {
 
         List<String> filtered = filterLatestLogs(logs, lastReceivedLogDate, logDateFormat, logDatePattern);
         return convertToDomainModel(filtered, logDateFormat, logDatePattern);
+    }
+
+    public Date getLastReceivedLogDate(String lastLog, String logDateFormat, String logDatePattern) {
+
+        String namedTimestampGroup = String.format(TIMESTAMP_GROUP, logDatePattern);
+        Pattern timestampPattern = Pattern.compile(namedTimestampGroup);
+        SimpleDateFormat formatter = new SimpleDateFormat(logDateFormat);
+
+        Matcher match = timestampPattern.matcher(lastLog);
+        if (match.find()) {
+            String timestamp = match.group("timestamp");
+            try {
+                return formatter.parse(timestamp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        return null;
     }
 }

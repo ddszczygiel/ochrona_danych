@@ -1,7 +1,14 @@
+
 package pl.agh.ochd.connectors;
 
+import pl.agh.ochd.model.RemoteHost;
+
+import java.net.URL;
 
 public final class ConnectorFactory {
+
+    private static URL url = ConnectorFactory.class.getClassLoader().getResource("logexample.log");
+    private static String path = url.getPath();
 
     private ConnectorFactory() {}
 
@@ -16,6 +23,8 @@ public final class ConnectorFactory {
                 return new FTPConnector(remoteHost);
             case HTTP:
                 return new SSHConnector(remoteHost);
+            case MOCK:
+                return new MockConnector(path);
             default:
                 throw new IllegalStateException("Invalid requested connector type");
         }

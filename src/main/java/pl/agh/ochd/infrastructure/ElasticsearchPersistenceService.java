@@ -11,8 +11,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.agh.ochd.domain.LogSample;
-import pl.agh.ochd.domain.ResourceId;
+import pl.agh.ochd.model.LogSample;
+import pl.agh.ochd.model.ResourceId;
 
 import java.io.IOException;
 import java.net.InetAddress;
