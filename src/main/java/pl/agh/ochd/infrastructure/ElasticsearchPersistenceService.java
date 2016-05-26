@@ -35,6 +35,7 @@ public class ElasticsearchPersistenceService implements PersistenceService {
     private final Client client;
 
     public ElasticsearchPersistenceService(String host, int port) throws UnknownHostException {
+
         client = TransportClient.builder().build()
                 .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
     }

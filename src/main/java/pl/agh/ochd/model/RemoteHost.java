@@ -64,12 +64,14 @@ public class RemoteHost {
         this.lastReceivedLogDate = Date.from(Instant.now().minus(100, ChronoUnit.DAYS));  // TODO
     }
 
-    public RemoteHost(String hostName, String userName, String passwd, int port) {
+    public RemoteHost(String hostName, String userName, String passwd, int port, String logFile, String logPath) {
 
         this.hostName = hostName;
         this.userName = userName;
         this.passwd = passwd;
         this.port = port;
+        this.logFile = logFile;
+        this.logPath = logPath;
     }
 
     private Map<String, Pattern> preparePatternMap(Config config) {

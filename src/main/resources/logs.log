@@ -1,0 +1,1000 @@
+Log file created at: 2016/01/11 13:15:46
+Running on machine: node-1
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I01112015 13:15:46.816980 25815 logging.cpp:172] INFO level logging started!
+I01112015 13:15:46.817267 25815 main.cpp:185] Build: 2015-12-07 16:57:57 by root
+I01112015 13:15:46.817281 25815 main.cpp:187] Version: 0.25.0
+I01112015 13:15:46.926830 25815 containerizer.cpp:143] Using isolation: posix/cpu,posix/mem,filesystem/posix
+I01112015 13:15:46.934468 25815 linux_launcher.cpp:103] Using /sys/fs/cgroup/freezer as the freezer hierarchy for the Linux launcher
+I01112015 13:15:46.937955 25815 systemd.cpp:128] systemd version `215` detected
+W01112015 13:15:46.938002 25815 systemd.cpp:136] Required functionality `Delegate` was introduced in Version `218`. Your system may not function properly; however since some distributions have patched systemd packages, your system may still be functional. This is why we keep running. See MESOS-3352 for more information
+I01112015 13:15:46.942879 25815 systemd.cpp:210] Started systemd slice `mesos_executors.slice`
+I01112015 13:15:46.947515 25815 main.cpp:272] Starting Mesos slave
+I01112015 13:15:46.949632 25815 slave.cpp:190] Slave started on 1)@192.168.40.10:5051
+I01112015 13:15:46.949674 25815 slave.cpp:191] Flags at startup: --appc_store_dir="/tmp/mesos/store/appc" --attributes="type:small" --authenticatee="crammd5" --cgroups_cpu_enable_pids_and_tids_count="false" --cgroups_enable_cfs="false" --cgroups_hierarchy="/sys/fs/cgroup" --cgroups_limit_swap="false" --cgroups_root="mesos" --container_disk_watch_interval="15secs" --containerizers="docker,mesos" --default_role="*" --disk_watch_interval="1mins" --docker="docker" --docker_kill_orphans="true" --docker_remove_delay="6hrs" --docker_socket="/var/run/docker.sock" --docker_stop_timeout="0ns" --enforce_container_disk_quota="false" --executor_registration_timeout="1mins" --executor_shutdown_grace_period="5secs" --fetcher_cache_dir="/tmp/mesos/fetch" --fetcher_cache_size="2GB" --frameworks_home="" --gc_delay="1weeks" --gc_disk_headroom="0.1" --hadoop_home="" --help="false" --hostname="192.168.40.10" --hostname_lookup="true" --image_provisioner_backend="copy" --initialize_driver_logging="true" --ip="192.168.40.10" --isolation="posix/cpu,posix/mem" --launcher_dir="/var/lib/mesos-0.25.0/build/src" --log_dir="/var/log/mesos-slave" --logbufsecs="0" --logging_level="INFO" --master="zk://192.168.40.10:2181,192.168.40.20:2181,192.168.40.30:2181/mesos" --oversubscribed_resources_interval="15secs" --perf_duration="10secs" --perf_interval="1mins" --port="5051" --qos_correction_interval_min="0ns" --quiet="false" --recover="reconnect" --recovery_timeout="15mins" --registration_backoff_factor="1secs" --resource_monitoring_interval="1secs" --revocable_cpu_low_priority="true" --sandbox_directory="/mnt/mesos/sandbox" --strict="true" --switch_user="true" --systemd_runtime_directory="/run/systemd/system" --version="false" --work_dir="/var/lib/mesos-slave-data"
+I01112015 13:15:46.951056 25815 slave.cpp:354] Slave resources: cpus(*):4; mem(*):6978; disk(*):322794; ports(*):[31000-32000]
+I01112015 13:15:46.951323 25815 slave.cpp:390] Slave hostname: 192.168.40.10
+I01112015 13:15:46.951335 25815 slave.cpp:395] Slave checkpoint: true
+I01112015 13:15:46.952427 25836 group.cpp:331] Group process (group(1)@192.168.40.10:5051) connected to ZooKeeper
+I01112015 13:15:46.952481 25836 group.cpp:805] Syncing group operations: queue size (joins, cancels, datas) = (0, 0, 0)
+I01112015 13:15:46.952502 25836 group.cpp:403] Trying to create path '/mesos' in ZooKeeper
+I01112015 13:15:46.956058 25836 detector.cpp:156] Detected a new leader: (id='1')
+I01112015 13:15:46.956746 25836 group.cpp:674] Trying to get '/mesos/json.info_0000000001' in ZooKeeper
+I01112015 13:15:46.959859 25836 detector.cpp:481] A new leading master (UPID=master@192.168.40.20:5050) is detected
+I01112015 13:15:46.961629 25832 state.cpp:54] Recovering state from '/var/lib/mesos-slave-data/meta'
+I01112015 13:15:46.962210 25838 status_update_manager.cpp:202] Recovering status update manager
+I01112015 13:15:46.962669 25838 docker.cpp:535] Recovering Docker containers
+I01112015 13:15:46.962749 25833 containerizer.cpp:386] Recovering containerizer
+I01112015 13:15:47.025027 25833 slave.cpp:4110] Finished recovery
+I01112015 13:15:47.047408 25833 slave.cpp:705] New master detected at master@192.168.40.20:5050
+I01112015 13:15:47.047518 25838 status_update_manager.cpp:176] Pausing sending status updates
+I01112015 13:15:47.048355 25833 slave.cpp:730] No credentials provided. Attempting to register without authentication
+I01112015 13:15:47.048459 25833 slave.cpp:741] Detecting new master
+I01112015 13:15:47.846768 25835 slave.cpp:880] Registered with master master@192.168.40.20:5050; given slave ID afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17
+I01112015 13:15:47.846977 25834 status_update_manager.cpp:183] Resuming sending status updates
+I01112015 13:15:47.887666 25835 slave.cpp:939] Forwarding total oversubscribed resources
+I01112015 13:16:13.142423 25833 slave.cpp:1270] Got assigned task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:13.333042 25833 slave.cpp:1386] Launching task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:13.343003 25833 slave.cpp:4852] Launching executor dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0/runs/ee066e7f-2dfe-441b-8d45-f15712015f42de7f'
+I01112015 13:16:13.344585 25833 slave.cpp:1604] Queuing task 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0' for executor dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:13.349519 25837 docker.cpp:761] Starting container 'ee066e7f-2dfe-441b-8d45-f15712015f42de7f' for task 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0' (and executor 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:16:13.445924 25838 docker.cpp:385] Checkpointing pid 25865 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0/runs/ee066e7f-2dfe-441b-8d45-f15712015f42de7f/pids/forked.pid'
+I01112015 13:16:13.535876 25836 slave.cpp:2379] Got registration for executor 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:39701
+I01112015 13:16:13.538372 25836 docker.cpp:1016] Ignoring updating container 'ee066e7f-2dfe-441b-8d45-f15712015f42de7f' with resources passed to update is identical to existing resources
+I01112015 13:16:13.539183 25836 slave.cpp:1760] Sending queued task 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0' to executor 'dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:14.863423 25834 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:39701
+I01112015 13:16:14.864147 25838 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:14.864848 25838 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:15.185207 25839 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:16:15.185993 25839 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:39701
+I01112015 13:16:15.205021 25837 status_update_manager.cpp:394] Received status update acknowledgement (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:15.205358 25837 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: f4f545b2-bc3c-47ea-985c-105259213dcb) for task dressizer-consul.1b1ef179-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:16:46.952910 25833 slave.cpp:3926] Current disk usage 8.43%. Max allowed age: 5.709757047009503days
+I01112015 13:17:46.954449 25836 slave.cpp:3926] Current disk usage 8.43%. Max allowed age: 5.709756880235695days
+I01112015 13:17:51.026201 25838 slave.cpp:1270] Got assigned task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:51.027075 25838 slave.cpp:1386] Launching task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:51.054214 25838 slave.cpp:4852] Launching executor dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0/runs/c50bdc17-4b12-415f-9bd3-1151b5df43cf'
+I01112015 13:17:51.055701 25838 slave.cpp:1604] Queuing task 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' for executor dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:51.060096 25833 docker.cpp:761] Starting container 'c50bdc17-4b12-415f-9bd3-1151b5df43cf' for task 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' (and executor 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:17:51.169494 25832 docker.cpp:385] Checkpointing pid 25970 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0/runs/c50bdc17-4b12-415f-9bd3-1151b5df43cf/pids/forked.pid'
+I01112015 13:17:51.268925 25839 slave.cpp:2379] Got registration for executor 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:55334
+I01112015 13:17:51.270977 25839 docker.cpp:1016] Ignoring updating container 'c50bdc17-4b12-415f-9bd3-1151b5df43cf' with resources passed to update is identical to existing resources
+I01112015 13:17:51.271575 25832 slave.cpp:1760] Sending queued task 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' to executor 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:52.594756 25839 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:55334
+I01112015 13:17:52.595374 25832 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:52.595981 25832 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:52.891315 25839 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:17:52.892035 25839 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:55334
+I01112015 13:17:52.934892 25832 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:17:52.935217 25832 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 092d507f-693a-406a-a2cb-e3f91212015e2bf0) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:46.955397 25835 slave.cpp:3926] Current disk usage 8.27%. Max allowed age: 5.720834497077014days
+I01112015 13:18:57.611145 25838 slave.cpp:1270] Got assigned task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:57.612052 25838 slave.cpp:1386] Launching task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:57.618363 25838 slave.cpp:4852] Launching executor dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0/runs/772ed45f-b03b-4668-8db1-728293272e9b'
+I01112015 13:18:57.624791 25837 docker.cpp:761] Starting container '772ed45f-b03b-4668-8db1-728293272e9b' for task 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' (and executor 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:18:57.683663 25838 slave.cpp:1604] Queuing task 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' for executor dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:57.720329 25839 docker.cpp:385] Checkpointing pid 26780 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0/runs/772ed45f-b03b-4668-8db1-728293272e9b/pids/forked.pid'
+I01112015 13:18:57.911643 25838 slave.cpp:2379] Got registration for executor 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58291
+I01112015 13:18:57.914511 25832 docker.cpp:1016] Ignoring updating container '772ed45f-b03b-4668-8db1-728293272e9b' with resources passed to update is identical to existing resources
+I01112015 13:18:57.915479 25838 slave.cpp:1760] Sending queued task 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' to executor 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:59.362380 25832 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58291
+I01112015 13:18:59.363052 25832 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:59.363592 25832 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:59.565815 25832 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:18:59.566548 25832 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:58291
+I01112015 13:18:59.586405 25836 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:18:59.586761 25836 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 6462bb1a-9177-4c98-92e7-e4ab64acc455) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:19:46.956197 25833 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720690571278206days
+I01112015 13:20:46.957635 25836 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720539557592430days
+I01112015 13:21:46.958797 25839 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720520045056563days
+I01112015 13:22:11.437819 25835 slave.cpp:1270] Got assigned task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:11.438935 25835 slave.cpp:1386] Launching task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:11.499207 25835 slave.cpp:4852] Launching executor passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0/runs/0b4f315e-1492-481b-8a94-73d05c2cabbe'
+I01112015 13:22:11.512737 25836 docker.cpp:761] Starting container '0b4f315e-1492-481b-8a94-73d05c2cabbe' for task 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' (and executor 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:22:11.622174 25836 docker.cpp:385] Checkpointing pid 29184 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0/runs/0b4f315e-1492-481b-8a94-73d05c2cabbe/pids/forked.pid'
+I01112015 13:22:11.648562 25835 slave.cpp:1604] Queuing task 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' for executor passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:11.734846 25838 slave.cpp:2379] Got registration for executor 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:32984
+I01112015 13:22:11.736784 25838 docker.cpp:1016] Ignoring updating container '0b4f315e-1492-481b-8a94-73d05c2cabbe' with resources passed to update is identical to existing resources
+I01112015 13:22:11.737491 25833 slave.cpp:1760] Sending queued task 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' to executor 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:13.069597 25835 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:32984
+I01112015 13:22:13.070124 25835 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:13.070574 25835 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:13.338680 25835 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:22:13.339258 25835 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:32984
+I01112015 13:22:13.357831 25832 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:13.382717 25832 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 3bb09916-4e1a-4bce-a9be-e9d5eadae12d) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:22:46.961133 25834 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720370448948183days
+I01112015 13:23:46.962895 25836 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720200673208693days
+I01112015 13:24:30.056685 25838 slave.cpp:1789] Asked to kill task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:31.135649 25832 slave.cpp:2717] Handling status update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58291
+I01112015 13:24:31.260489 25833 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:31.260735 25833 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:31.429455 25833 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:24:31.430007 25833 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:58291
+I01112015 13:24:31.439187 25836 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:31.439457 25836 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: 6a54b16f-47b0-481a-ba07-24dabfa49b5a) for task dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:32.168761 25834 docker.cpp:1592] Executor for container '772ed45f-b03b-4668-8db1-728293272e9b' has exited
+I01112015 13:24:32.168884 25834 docker.cpp:1390] Destroying container '772ed45f-b03b-4668-8db1-728293272e9b'
+I01112015 13:24:32.169124 25834 docker.cpp:1494] Running docker stop on container '772ed45f-b03b-4668-8db1-728293272e9b'
+I01112015 13:24:32.170155 25834 slave.cpp:3440] Executor 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:24:32.170366 25834 slave.cpp:3544] Cleaning up executor 'dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:24:32.171084 25834 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0/runs/772ed45f-b03b-4668-8db1-728293272e9b' for gc 6.99999802492148days in the future
+I01112015 13:24:32.171412 25834 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999802230518days in the future
+I01112015 13:24:32.171514 25834 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0/runs/772ed45f-b03b-4668-8db1-728293272e9b' for gc 6.9999980217363days in the future
+I01112015 13:24:32.171584 25834 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.7d284b5b-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999802125037days in the future
+I01112015 13:24:46.963826 25838 slave.cpp:3926] Current disk usage 8.28%. Max allowed age: 5.720125624993785days
+I01112015 13:25:08.759021 25834 slave.cpp:1270] Got assigned task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:08.760102 25834 slave.cpp:1386] Launching task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:08.825242 25834 slave.cpp:4852] Launching executor passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0/runs/81a230af-34a0-485e-97d1-984197876a87'
+I01112015 13:25:08.827090 25834 slave.cpp:1604] Queuing task 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' for executor passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:08.834491 25836 docker.cpp:761] Starting container '81a230af-34a0-485e-97d1-984197876a87' for task 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' (and executor 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:25:09.008854 25835 docker.cpp:385] Checkpointing pid 31304 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0/runs/81a230af-34a0-485e-97d1-984197876a87/pids/forked.pid'
+I01112015 13:25:09.097256 25839 slave.cpp:2379] Got registration for executor 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:39472
+I01112015 13:25:09.099239 25839 docker.cpp:1016] Ignoring updating container '81a230af-34a0-485e-97d1-984197876a87' with resources passed to update is identical to existing resources
+I01112015 13:25:09.100397 25839 slave.cpp:1760] Sending queued task 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' to executor 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:10.741580 25838 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:39472
+I01112015 13:25:10.742209 25838 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:10.742787 25838 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:11.041872 25838 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:25:11.042621 25838 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:39472
+I01112015 13:25:11.062307 25835 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:11.062650 25835 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 766d9b12-589b-4f0c-946b-bb17f12a1ed7) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:43.129513 25832 slave.cpp:1270] Got assigned task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:43.130836 25832 slave.cpp:1386] Launching task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:43.137979 25832 slave.cpp:4852] Launching executor dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0/runs/d1a81b0c-4b53-4c16-8a5e-3824ac52f3e9'
+I01112015 13:25:43.139403 25832 slave.cpp:1604] Queuing task 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' for executor dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:43.150483 25835 docker.cpp:761] Starting container 'd1a81b0c-4b53-4c16-8a5e-3824ac52f3e9' for task 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' (and executor 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:25:43.292569 25839 docker.cpp:385] Checkpointing pid 31815 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0/runs/d1a81b0c-4b53-4c16-8a5e-3824ac52f3e9/pids/forked.pid'
+I01112015 13:25:43.374027 25834 slave.cpp:2379] Got registration for executor 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:37592
+I01112015 13:25:43.376014 25834 docker.cpp:1016] Ignoring updating container 'd1a81b0c-4b53-4c16-8a5e-3824ac52f3e9' with resources passed to update is identical to existing resources
+I01112015 13:25:43.377276 25834 slave.cpp:1760] Sending queued task 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' to executor 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:45.214952 25837 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:37592
+I01112015 13:25:45.215457 25836 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:45.216063 25836 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:45.439149 25836 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:25:45.439800 25836 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:37592
+I01112015 13:25:45.462314 25839 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:45.462582 25839 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 204334dd-b9cd-467c-baf1-b717777870f8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:25:46.965615 25836 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.030982335627662days
+I01112015 13:26:46.966653 25837 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030791713161806days
+I01112015 13:27:46.968107 25833 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030622020809225days
+I01112015 13:28:46.969303 25835 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030446741533970days
+I01112015 13:29:46.970573 25838 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030333251955648days
+I01112015 13:30:46.971395 25835 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030344008866458days
+I01112015 13:30:57.025455 25838 slave.cpp:1789] Asked to kill task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:57.989210 25836 slave.cpp:2717] Handling status update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:32984
+I01112015 13:30:58.060170 25836 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:58.060369 25836 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:58.343590 25835 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:30:58.344509 25837 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:32984
+I01112015 13:30:58.353792 25834 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:58.354123 25834 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: 6c4095d2-88f7-4271-a9ad-3dff564320159004) for task passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:59.069283 25832 docker.cpp:1592] Executor for container '0b4f315e-1492-481b-8a94-73d05c2cabbe' has exited
+I01112015 13:30:59.069422 25832 docker.cpp:1390] Destroying container '0b4f315e-1492-481b-8a94-73d05c2cabbe'
+I01112015 13:30:59.069512 25832 docker.cpp:1494] Running docker stop on container '0b4f315e-1492-481b-8a94-73d05c2cabbe'
+I01112015 13:30:59.070181 25832 slave.cpp:3440] Executor 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:30:59.070336 25832 slave.cpp:3544] Cleaning up executor 'passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:30:59.070819 25832 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0/runs/0b4f315e-1492-481b-8a94-73d05c2cabbe' for gc 6.9999991836563days in the future
+I01112015 13:30:59.071019 25832 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999918193185days in the future
+I01112015 13:30:59.071080 25832 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0/runs/0b4f315e-1492-481b-8a94-73d05c2cabbe' for gc 6.99999918145778days in the future
+I01112015 13:30:59.071135 25832 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.f0b0199c-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999918101926days in the future
+I01112015 13:31:17.671419 25832 slave.cpp:1789] Asked to kill task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:18.725791 25836 slave.cpp:2717] Handling status update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:39472
+I01112015 13:31:18.827476 25839 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:18.827664 25839 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:19.052738 25839 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:31:19.068989 25839 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:39472
+I01112015 13:31:19.079660 25838 status_update_manager.cpp:394] Received status update acknowledgement (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:19.079952 25838 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: ab03579d-888d-4ea7-b59a-d0c260c02722) for task passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:19.739523 25833 docker.cpp:1592] Executor for container '81a230af-34a0-485e-97d1-984197876a87' has exited
+I01112015 13:31:19.739634 25833 docker.cpp:1390] Destroying container '81a230af-34a0-485e-97d1-984197876a87'
+I01112015 13:31:19.739713 25833 docker.cpp:1494] Running docker stop on container '81a230af-34a0-485e-97d1-984197876a87'
+I01112015 13:31:19.740227 25833 slave.cpp:3440] Executor 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:31:19.740341 25833 slave.cpp:3544] Cleaning up executor 'passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:31:19.740784 25833 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0/runs/81a230af-34a0-485e-97d1-984197876a87' for gc 6.9999914291763days in the future
+I01112015 13:31:19.740929 25833 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' for gc 6.99999142767407days in the future
+I01112015 13:31:19.741013 25833 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0/runs/81a230af-34a0-485e-97d1-984197876a87' for gc 6.99999142718815days in the future
+I01112015 13:31:19.741117 25833 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.5a5fc39e-b85e-11e5-ac55-0242d742a0a0' for gc 6.99999142676148days in the future
+I01112015 13:31:46.972534 25835 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030074168840416days
+I01112015 13:32:18.973853 25839 slave.cpp:1270] Got assigned task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:18.975132 25839 slave.cpp:1386] Launching task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:18.983613 25839 slave.cpp:4852] Launching executor passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0/runs/d1946e76-4239-4de1-91df-2d43a3cdf645'
+I01112015 13:32:18.985023 25839 slave.cpp:1604] Queuing task 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0' for executor passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:18.990247 25839 docker.cpp:761] Starting container 'd1946e76-4239-4de1-91df-2d43a3cdf645' for task 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0' (and executor 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:32:19.128173 25838 docker.cpp:385] Checkpointing pid 3921 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0/runs/d1946e76-4239-4de1-91df-2d43a3cdf645/pids/forked.pid'
+I01112015 13:32:19.225175 25838 slave.cpp:2379] Got registration for executor 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:57856
+I01112015 13:32:19.227392 25838 docker.cpp:1016] Ignoring updating container 'd1946e76-4239-4de1-91df-2d43a3cdf645' with resources passed to update is identical to existing resources
+I01112015 13:32:19.229147 25838 slave.cpp:1760] Sending queued task 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0' to executor 'passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:20.671237 25837 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:57856
+I01112015 13:32:20.671730 25837 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:20.672297 25837 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:20.884954 25835 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:32:20.885509 25835 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:57856
+I01112015 13:32:20.905169 25832 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:20.977833 25832 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 836f2fc4-758e-4f96-a93f-b96bc1573dce) for task passion-consul.5acd8422-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:32:46.974058 25832 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037717245820093days
+I01112015 13:33:46.975723 25837 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037294807757084days
+I01112015 13:34:27.075402 25832 slave.cpp:1789] Asked to kill task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:27.934819 25839 slave.cpp:2717] Handling status update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:37592
+I01112015 13:34:28.059015 25837 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:28.059538 25837 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:28.223104 25833 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:34:28.224684 25834 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:37592
+I01112015 13:34:28.243259 25832 status_update_manager.cpp:394] Received status update acknowledgement (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:28.243511 25832 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: e99c393a-22fe-4641-857f-c03859289bc8) for task dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:28.967054 25838 docker.cpp:1592] Executor for container 'd1a81b0c-4b53-4c16-8a5e-3824ac52f3e9' has exited
+I01112015 13:34:28.967202 25838 docker.cpp:1390] Destroying container 'd1a81b0c-4b53-4c16-8a5e-3824ac52f3e9'
+I01112015 13:34:28.967301 25838 docker.cpp:1494] Running docker stop on container 'd1a81b0c-4b53-4c16-8a5e-3824ac52f3e9'
+I01112015 13:34:28.967972 25838 slave.cpp:3440] Executor 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:34:28.968089 25838 slave.cpp:3544] Cleaning up executor 'dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:28.968641 25838 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0/runs/d1a81b0c-4b53-4c16-8a5e-3824ac52f3e9' for gc 6.99998879268444days in the future
+I01112015 13:34:28.968816 25838 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' for gc 6.99998879071704days in the future
+I01112015 13:34:28.968888 25838 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0/runs/d1a81b0c-4b53-4c16-8a5e-3824ac52f3e9' for gc 6.99998879019556days in the future
+I01112015 13:34:28.968945 25838 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.6edc83df-b85e-11e5-ac55-0242d742a0a0' for gc 6.99998878969778days in the future
+I01112015 13:34:43.636036 25837 slave.cpp:1270] Got assigned task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:43.637161 25837 slave.cpp:1386] Launching task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:43.690956 25837 slave.cpp:4852] Launching executor dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0/runs/ba8c90d8-d526-46ac-a230-3ffa01a598ac'
+I01112015 13:34:43.696800 25837 slave.cpp:1604] Queuing task 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' for executor dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:43.699942 25836 docker.cpp:761] Starting container 'ba8c90d8-d526-46ac-a230-3ffa01a598ac' for task 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' (and executor 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:34:43.792412 25838 docker.cpp:385] Checkpointing pid 5601 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0/runs/ba8c90d8-d526-46ac-a230-3ffa01a598ac/pids/forked.pid'
+I01112015 13:34:43.890089 25833 slave.cpp:2379] Got registration for executor 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58518
+I01112015 13:34:43.892446 25833 docker.cpp:1016] Ignoring updating container 'ba8c90d8-d526-46ac-a230-3ffa01a598ac' with resources passed to update is identical to existing resources
+I01112015 13:34:43.893448 25833 slave.cpp:1760] Sending queued task 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' to executor 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:45.337977 25837 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58518
+I01112015 13:34:45.338510 25837 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:45.339058 25837 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:45.525969 25837 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:34:45.526724 25837 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:58518
+I01112015 13:34:45.549388 25834 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:45.549742 25834 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 25aaf06b-e25a-435b-81b2-13b272874251) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:34:46.976701 25837 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037266789756852days
+I01112015 13:35:46.977923 25839 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037197578625324days
+I01112015 13:36:46.979039 25839 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036854441509409days
+I01112015 13:37:46.980062 25835 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.037021382094120days
+I01112015 13:38:46.981271 25835 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036757962859803days
+I01112015 13:38:54.149055 25832 slave.cpp:1270] Got assigned task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:54.150061 25832 slave.cpp:1386] Launching task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:54.240834 25832 slave.cpp:4852] Launching executor passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0/runs/106906a3-8323-48a8-b706-c32d5be8dbd6'
+I01112015 13:38:54.245822 25832 slave.cpp:1604] Queuing task 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0' for executor passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:54.250818 25839 docker.cpp:761] Starting container '106906a3-8323-48a8-b706-c32d5be8dbd6' for task 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0' (and executor 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:38:54.403730 25839 docker.cpp:385] Checkpointing pid 8399 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0/runs/106906a3-8323-48a8-b706-c32d5be8dbd6/pids/forked.pid'
+I01112015 13:38:54.529670 25835 slave.cpp:2379] Got registration for executor 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:59356
+I01112015 13:38:54.534296 25835 docker.cpp:1016] Ignoring updating container '106906a3-8323-48a8-b706-c32d5be8dbd6' with resources passed to update is identical to existing resources
+I01112015 13:38:54.540462 25835 slave.cpp:1760] Sending queued task 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0' to executor 'passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:55.973059 25835 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:59356
+I01112015 13:38:55.973553 25836 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:55.974153 25836 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:56.120048 25835 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:38:56.120908 25835 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:59356
+I01112015 13:38:56.137830 25836 status_update_manager.cpp:394] Received status update acknowledgement (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:38:56.138216 25836 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: e5c21de7-62bc-4a9a-b4c1-f20f26152015c415) for task passion-mongo.46590bd5-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:39:46.982403 25839 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030442488801794days
+I01112015 13:40:46.983939 25837 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030177485216274days
+I01112015 13:41:47.013432 25837 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030225265913090days
+I01112015 13:42:35.563899 25838 slave.cpp:1789] Asked to kill task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:36.406532 25833 slave.cpp:2717] Handling status update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:58518
+I01112015 13:42:36.506955 25833 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:36.507836 25833 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:36.671566 25838 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:42:36.672895 25834 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:58518
+I01112015 13:42:36.682291 25836 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:36.682559 25836 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: 6be404420156-9c29-4625-a0c0-d7856132256c) for task dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:37.414456 25835 docker.cpp:1592] Executor for container 'ba8c90d8-d526-46ac-a230-3ffa01a598ac' has exited
+I01112015 13:42:37.414587 25835 docker.cpp:1390] Destroying container 'ba8c90d8-d526-46ac-a230-3ffa01a598ac'
+I01112015 13:42:37.414681 25835 docker.cpp:1494] Running docker stop on container 'ba8c90d8-d526-46ac-a230-3ffa01a598ac'
+I01112015 13:42:37.415259 25835 slave.cpp:3440] Executor 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:42:37.415390 25835 slave.cpp:3544] Cleaning up executor 'dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:37.415851 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0/runs/ba8c90d8-d526-46ac-a230-3ffa01a598ac' for gc 6.99999518998815days in the future
+I01112015 13:42:37.416013 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' for gc 6.99999518846222days in the future
+I01112015 13:42:37.416077 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0/runs/ba8c90d8-d526-46ac-a230-3ffa01a598ac' for gc 6.99999518798815days in the future
+I01112015 13:42:37.416148 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.b108dd33-b85f-11e5-ac55-0242d742a0a0' for gc 6.99999518754667days in the future
+I01112015 13:42:41.740507 25839 slave.cpp:1789] Asked to kill task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:42.495409 25837 slave.cpp:2717] Handling status update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:55334
+I01112015 13:42:42.559314 25836 status_update_manager.cpp:322] Received status update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:42.559554 25836 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:42.665267 25835 slave.cpp:3016] Forwarding the update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:42:42.665802 25835 slave.cpp:2946] Sending acknowledgement for status update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:55334
+I01112015 13:42:42.674933 25838 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:42.675135 25838 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_KILLED (UUID: 29e929520154-f26a-4576-abae-9af2c2256c77) for task dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:43.564795 25834 docker.cpp:1592] Executor for container 'c50bdc17-4b12-415f-9bd3-1151b5df43cf' has exited
+I01112015 13:42:43.564877 25834 docker.cpp:1390] Destroying container 'c50bdc17-4b12-415f-9bd3-1151b5df43cf'
+I01112015 13:42:43.564954 25834 docker.cpp:1494] Running docker stop on container 'c50bdc17-4b12-415f-9bd3-1151b5df43cf'
+I01112015 13:42:43.565157 25839 slave.cpp:3440] Executor 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 exited with status 0
+I01112015 13:42:43.565245 25839 slave.cpp:3544] Cleaning up executor 'dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:42:43.565485 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0/runs/c50bdc17-4b12-415f-9bd3-1151b5df43cf' for gc 6.99999345563556days in the future
+I01112015 13:42:43.565618 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999345402667days in the future
+I01112015 13:42:43.565677 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0/runs/c50bdc17-4b12-415f-9bd3-1151b5df43cf' for gc 6.99999345348444days in the future
+I01112015 13:42:43.565750 25835 gc.cpp:56] Scheduling '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.5575f0da-b85d-11e5-ac55-0242d742a0a0' for gc 6.99999345301926days in the future
+I01112015 13:42:47.014917 25837 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030030057167442days
+I01112015 13:43:00.638862 25834 slave.cpp:1270] Got assigned task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:00.639982 25834 slave.cpp:1386] Launching task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:00.687232 25834 slave.cpp:4852] Launching executor dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0/runs/39e6bb9a-6bf9-4f1c-bd0e-45dd74c8dd2c'
+I01112015 13:43:00.688351 25834 slave.cpp:1604] Queuing task 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0' for executor dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:00.692960 25839 docker.cpp:761] Starting container '39e6bb9a-6bf9-4f1c-bd0e-45dd74c8dd2c' for task 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0' (and executor 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:43:00.855365 25835 docker.cpp:385] Checkpointing pid 10965 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0/runs/39e6bb9a-6bf9-4f1c-bd0e-45dd74c8dd2c/pids/forked.pid'
+I01112015 13:43:00.921852 25835 slave.cpp:2379] Got registration for executor 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:52175
+I01112015 13:43:00.947440 25837 docker.cpp:1016] Ignoring updating container '39e6bb9a-6bf9-4f1c-bd0e-45dd74c8dd2c' with resources passed to update is identical to existing resources
+I01112015 13:43:00.947892 25838 slave.cpp:1760] Sending queued task 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0' to executor 'dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:02.173187 25833 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:52175
+I01112015 13:43:02.173741 25839 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:02.174279 25839 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:02.404736 25833 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:43:02.405421 25833 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:52175
+I01112015 13:43:02.425767 25839 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:02.426126 25839 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 783654ff-55c5-408f-9008-465faba09a14) for task dressizer-elasticsearch.d9444866-b860-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:43:47.016613 25832 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.057116625664525days
+I01112015 13:44:07.052928 25837 slave.cpp:1270] Got assigned task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:07.054072 25837 slave.cpp:1386] Launching task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 for framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:07.090745 25837 slave.cpp:4852] Launching executor dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 with resources cpus(*):0.1; mem(*):32 in work directory '/var/lib/mesos-slave-data/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0/runs/1b937a0a-2626-45c2-8f26-da1af9c15ee0'
+I01112015 13:44:07.103904 25837 slave.cpp:1604] Queuing task 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0' for executor dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:07.107259 25835 docker.cpp:761] Starting container '1b937a0a-2626-45c2-8f26-da1af9c15ee0' for task 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0' (and executor 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0') of framework 'afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000'
+I01112015 13:44:07.184849 25833 docker.cpp:385] Checkpointing pid 11162 to '/var/lib/mesos-slave-data/meta/slaves/afe9dc8f-f1e7-4685-99ba-6941184a22b5-S17/frameworks/afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000/executors/dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0/runs/1b937a0a-2626-45c2-8f26-da1af9c15ee0/pids/forked.pid'
+I01112015 13:44:07.250708 25833 slave.cpp:2379] Got registration for executor 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:43184
+I01112015 13:44:07.284458 25836 docker.cpp:1016] Ignoring updating container '1b937a0a-2626-45c2-8f26-da1af9c15ee0' with resources passed to update is identical to existing resources
+I01112015 13:44:07.284907 25835 slave.cpp:1760] Sending queued task 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0' to executor 'dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0' of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:08.306211 25839 slave.cpp:2717] Handling status update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 from executor(1)@192.168.40.10:43184
+I01112015 13:44:08.306745 25833 status_update_manager.cpp:322] Received status update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:08.307366 25833 status_update_manager.cpp:826] Checkpointing UPDATE for status update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:08.472519 25836 slave.cpp:3016] Forwarding the update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to master@192.168.40.20:5050
+I01112015 13:44:08.473067 25836 slave.cpp:2946] Sending acknowledgement for status update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000 to executor(1)@192.168.40.10:43184
+I01112015 13:44:08.489233 25833 status_update_manager.cpp:394] Received status update acknowledgement (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:08.495290 25833 status_update_manager.cpp:826] Checkpointing ACK for status update TASK_RUNNING (UUID: 0f92812015e3-aacd-4dd8-babb-152a4347965b) for task dressizer-kibana.00d9f328-b861-11e5-ac55-0242d742a0a0 of framework afe9dc8f-f1e7-4685-99ba-6941184a22b5-0000
+I01112015 13:44:47.017468 25836 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.057105785366817days
+I01112015 13:45:47.018611 25839 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.057103367146563days
+I01112015 13:46:47.019755 25835 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.057086606378565days
+I01112015 13:47:47.020822 25836 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.057038158586493days
+I01112015 13:48:47.021689 25838 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.056996965455208days
+I01112015 13:49:47.022194 25832 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.056960858925151days
+I01112015 13:50:47.023236 25839 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.056898735680591days
+I01112015 13:51:47.024438 25839 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.056856541906435days
+I01112015 13:52:47.025066 25836 slave.cpp:3926] Current disk usage 3.47%. Max allowed age: 6.056800422519062days
+I01112015 13:53:47.026556 25839 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056745970869803days
+I01112015 13:54:47.027804 25835 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056648658351146days
+I01112015 13:55:47.028364 25839 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056611301017500days
+I01112015 13:56:47.029060 25837 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056556849368241days
+I01112015 13:57:47.029753 25835 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056518157844121days
+I01112015 13:58:47.030148 25837 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056447362361389days
+I01112015 13:59:47.030817 25839 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056395745866921days
+I01112015 14:00:47.031432 25837 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056342294860521days
+I01112015 14:01:47.032860 25838 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056282423062408days
+I01112015 14:02:47.033737 25838 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056240145901342days
+I01112015 14:03:47.034466 25838 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056189613436644days
+I01112015 14:04:47.035341 25834 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056145168216042days
+I01112015 14:05:47.036672 25837 slave.cpp:3926] Current disk usage 3.48%. Max allowed age: 6.056093384947754days
+I01112015 14:06:47.037928 25837 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.056040517649699days
+I01112015 14:07:47.038866 25839 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055998574036262days
+I01112015 14:08:47.039309 25836 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055949709309664days
+I01112015 14:09:47.040508 25832 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055910934398634days
+I01112015 14:10:47.041147 25836 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055868073529236days
+I01112015 14:11:47.042713 25835 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055818541707396days
+I01112015 14:12:47.043701 25839 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055767508921262days
+I01112015 14:13:47.044991 25832 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055718060486331days
+I01112015 14:14:47.046375 25835 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055675533164549days
+I01112015 14:15:47.047054 25836 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055621915384352days
+I01112015 14:16:47.190688 25837 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055567630508900days
+I01112015 14:17:47.191692 25834 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055521100615660days
+I01112015 14:18:47.193121 25838 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055469901055718days
+I01112015 14:19:47.194456 25836 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055417200531470days
+I01112015 14:20:47.195817 25836 slave.cpp:3926] Current disk usage 3.49%. Max allowed age: 6.055364083072697days
+I01112015 14:21:47.196619 25833 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055312299804410days
+I01112015 14:22:47.197738 25832 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055282363905359days
+I01112015 14:23:47.199319 25837 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055221658238194days
+I01112015 14:24:47.200199 25839 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055174377862801days
+I01112015 14:25:47.201354 25836 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055116757511135days
+I01112015 14:26:47.201797 25833 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055076981957233days
+I01112015 14:27:47.202850 25832 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.055024865141331days
+I01112015 14:28:47.203873 25833 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054969913170637days
+I01112015 14:29:47.204368 25835 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054922382634537days
+I01112015 14:30:47.205510 25837 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054871683396018days
+I01112015 14:31:47.206055 25833 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054822818669422days
+I01112015 14:32:47.207388 25836 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054781542151227days
+I01112015 14:33:47.208528 25835 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054719835841192days
+I01112015 14:34:47.209364 25833 slave.cpp:3926] Current disk usage 3.50%. Max allowed age: 6.054681728025405days
+I01112015 14:35:47.210018 25832 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054618604137986days
+I01112015 14:36:47.210867 25838 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054580162774572days
+I01112015 14:37:47.212431 25833 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054524460321725days
+I01112015 14:38:47.212988 25835 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054477596880868days
+I01112015 14:39:47.214267 25833 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054423562166134days
+I01112015 14:40:47.215389 25838 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054380451136018days
+I01112015 14:41:47.216604 25838 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054330919314178days
+I01112015 14:42:47.218047 25835 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054284389420937days
+I01112015 14:43:47.219574 25832 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054225851813310days
+I01112015 14:44:47.221004 25833 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054172234033113days
+I01112015 14:45:47.221501 25839 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054134126217327days
+I01112015 14:46:47.222532 25837 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054083510365718days
+I01112015 14:47:47.223318 25839 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.054023555180694days
+I01112015 14:48:47.224019 25833 slave.cpp:3926] Current disk usage 3.51%. Max allowed age: 6.053961848870660days
+I01112015 14:49:47.224450 25836 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053909148346424days
+I01112015 14:50:47.225581 25835 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053858032173379days
+I01112015 14:51:47.226781 25838 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053798410535983days
+I01112015 14:52:47.228229 25833 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053751964029653days
+I01112015 14:53:47.416976 25833 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053698929957778days
+I01112015 14:54:47.418329 25834 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053643477665660days
+I01112015 14:55:47.419245 25837 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053588442308055days
+I01112015 14:56:47.420398 25839 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053528737283761days
+I01112015 14:57:47.421504 25833 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053482707711956days
+I01112015 14:58:47.422132 25837 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053407659497049days
+I01112015 14:59:47.422612 25834 slave.cpp:3926] Current disk usage 3.52%. Max allowed age: 6.053316100674861days
+I01112015 15:00:47.423576 25833 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.053246139061192days
+I01112015 15:01:47.424331 25832 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.053199859328669days
+I01112015 15:02:47.425446 25835 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.053136902215058days
+I01112015 15:03:47.426798 25835 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.053086453137257days
+I01112015 15:04:47.427983 25832 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.053024913601030days
+I01112015 15:05:47.428629 25839 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052974381136331days
+I01112015 15:06:47.429379 25839 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052922931415671days
+I01112015 15:07:47.430326 25835 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052883406022488days
+I01112015 15:08:47.431794 25836 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052827036474398days
+I01112015 15:09:47.433358 25836 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052764412908414days
+I01112015 15:10:47.433997 25838 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052724220419988days
+I01112015 15:11:47.435365 25836 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052669268449294days
+I01112015 15:12:47.436036 25835 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052617651954827days
+I01112015 15:13:47.437191 25832 slave.cpp:3926] Current disk usage 3.53%. Max allowed age: 6.052569204162754days
+I01112015 15:14:47.438640 25838 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052517837828993days
+I01112015 15:15:47.439288 25835 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052462719084491days
+I01112015 15:16:47.440182 25833 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052390255863657days
+I01112015 15:17:47.441280 25837 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052351731113345days
+I01112015 15:18:47.441835 25833 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052299864458148days
+I01112015 15:19:47.442792 25833 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052255085689930days
+I01112015 15:20:47.443734 25833 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052208055475255days
+I01112015 15:21:47.444669 25836 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052154104147431days
+I01112015 15:22:47.445876 25838 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052107657641088days
+I01112015 15:23:47.446801 25839 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052056958402581days
+I01112015 15:24:47.447634 25833 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.052006092390255days
+I01112015 15:25:47.448947 25832 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.051961897330370days
+I01112015 15:26:47.449820 25832 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.051911281478762days
+I01112015 15:27:47.450502 25838 slave.cpp:3926] Current disk usage 3.54%. Max allowed age: 6.051859414823577days
+I01112015 15:28:47.451238 25833 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051821223620879days
+I01112015 15:29:47.451808 25833 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051770691156169days
+I01112015 15:30:47.452795 25833 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051714988703333days
+I01112015 15:31:47.560578 25837 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051680716685197days
+I01112015 15:32:47.561257 25835 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051623596654966days
+I01112015 15:33:47.562358 25832 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051569728714039days
+I01112015 15:34:47.563724 25834 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051524949945811days
+I01112015 15:35:47.564826 25837 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051480588112118days
+I01112015 15:36:47.565837 25835 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051427303879537days
+I01112015 15:37:47.566745 25832 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051374353194571days
+I01112015 15:38:47.567728 25838 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051322903473912days
+I01112015 15:39:47.568719 25832 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051265283122246days
+I01112015 15:40:47.569504 25835 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051213666627766days
+I01112015 15:41:47.570184 25835 slave.cpp:3926] Current disk usage 3.55%. Max allowed age: 6.051171639627430days
+I01112015 15:42:47.571107 25838 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.051120023132952days
+I01112015 15:43:47.572494 25838 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.051066738900371days
+I01112015 15:44:47.573427 25832 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.051035051876296days
+I01112015 15:45:47.574620 25836 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050999362280764days
+I01112015 15:46:47.575736 25834 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050950080619641days
+I01112015 15:47:47.576602 25835 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050893294137037days
+I01112015 15:48:47.577505 25833 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050841010547315days
+I01112015 15:49:47.578289 25832 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050787309380208days
+I01112015 15:50:47.579699 25839 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050750035433472days
+I01112015 15:51:47.580531 25836 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050695000075880days
+I01112015 15:52:47.581703 25836 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050648053248113days
+I01112015 15:53:47.582587 25836 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050597020461979days
+I01112015 15:54:47.583219 25836 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050540484140081days
+I01112015 15:55:47.584239 25839 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050504877931447days
+I01112015 15:56:47.585072 25832 slave.cpp:3926] Current disk usage 3.56%. Max allowed age: 6.050458681585833days
+I01112015 15:57:47.585396 25832 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050419322966459days
+I01112015 15:58:47.586858 25834 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050379380638750days
+I01112015 15:59:47.587635 25832 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050314839173935days
+I01112015 16:00:47.588739 25837 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050282151507003days
+I01112015 16:01:47.589805 25837 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050227366310116days
+I01112015 16:02:47.590956 25835 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050182754315706days
+I01112015 16:03:47.592092 25836 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050139726672488days
+I01112015 16:04:47.592918 25833 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050088026791111days
+I01112015 16:05:47.593380 25837 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.050042914475267days
+I01112015 16:06:47.594085 25836 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.049995884260590days
+I01112015 16:07:47.594677 25839 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.049942433254201days
+I01112015 16:08:47.612687 25838 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.049893985462130days
+I01112015 16:09:47.614094 25837 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.049841701872419days
+I01112015 16:10:47.614742 25839 slave.cpp:3926] Current disk usage 3.57%. Max allowed age: 6.049799341324444days
+I01112015 16:11:47.616261 25835 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049743388710891days
+I01112015 16:12:47.617266 25838 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049694440597396days
+I01112015 16:13:47.618288 25837 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049649745216064days
+I01112015 16:14:47.619262 25839 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049602548227581days
+I01112015 16:15:47.619964 25833 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049561688643912days
+I01112015 16:16:47.620759 25832 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049504985548206days
+I01112015 16:17:47.621439 25838 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049459206137118days
+I01112015 16:18:47.622608 25839 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049406172065255days
+I01112015 16:19:47.623210 25839 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049362560713703days
+I01112015 16:20:47.623904 25833 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049314529856169days
+I01112015 16:21:47.624671 25832 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049265665129572days
+I01112015 16:22:47.625749 25832 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049210462998159days
+I01112015 16:23:47.626749 25836 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049161181337048days
+I01112015 16:24:47.627944 25835 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049112483384259days
+I01112015 16:25:47.628470 25834 slave.cpp:3926] Current disk usage 3.58%. Max allowed age: 6.049067704616030days
+I01112015 16:26:47.629784 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.049021007948982days
+I01112015 16:27:47.630864 25837 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048981732716516days
+I01112015 16:28:47.631515 25833 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048939538942361days
+I01112015 16:29:47.632861 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048889756959803days
+I01112015 16:30:47.634021 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048839891590347days
+I01112015 16:31:47.635381 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048802117322176days
+I01112015 16:32:47.635896 25836 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048752168565811days
+I01112015 16:33:47.636298 25834 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048699468041574days
+I01112015 16:34:47.636854 25836 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048655689916203days
+I01112015 16:35:47.637749 25833 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048602655844340days
+I01112015 16:36:47.638754 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048559044492789days
+I01112015 16:37:47.640003 25838 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048506177194734days
+I01112015 16:38:47.640748 25837 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048464483742014days
+I01112015 16:39:47.641582 25835 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048412700473727days
+I01112015 16:40:47.642156 25836 slave.cpp:3926] Current disk usage 3.59%. Max allowed age: 6.048372924919827days
+I01112015 16:41:47.642958 25833 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048309884419306days
+I01112015 16:42:47.643725 25832 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048269108222546days
+I01112015 16:43:47.645227 25834 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048228248638877days
+I01112015 16:44:47.646319 25837 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048170795061019days
+I01112015 16:45:47.646919 25837 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048116426798669days
+I01112015 16:46:47.757637 25838 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048065644173252days
+I01112015 16:47:47.758421 25832 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.048019948149062days
+I01112015 16:48:47.759415 25836 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047972500999861days
+I01112015 16:49:47.760160 25832 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047932892219780days
+I01112015 16:50:47.760818 25835 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047881359112210days
+I01112015 16:51:47.761332 25838 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047830993421320days
+I01112015 16:52:47.762472 25832 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047788966420972days
+I01112015 16:53:47.762899 25837 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047738017021736days
+I01112015 16:54:47.763952 25835 slave.cpp:3926] Current disk usage 3.60%. Max allowed age: 6.047688068265370days
+I01112015 16:55:47.764824 25833 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047635117580417days
+I01112015 16:56:47.766140 25839 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047578331097801days
+I01112015 16:57:47.767006 25834 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047534719746250days
+I01112015 16:58:47.768261 25832 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047486688888715days
+I01112015 16:59:47.769029 25839 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047441993507396days
+I01112015 17:00:47.769983 25835 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047391794590313days
+I01112015 17:01:47.771124 25835 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047340928577986days
+I01112015 17:02:47.771967 25833 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047301903506239days
+I01112015 17:03:47.772508 25834 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047248535886748days
+I01112015 17:04:47.773491 25836 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047207426142361days
+I01112015 17:05:47.774926 25835 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047157393999097days
+I01112015 17:06:47.775951 25837 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047113115552303days
+I01112015 17:07:47.777349 25837 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047061999379260days
+I01112015 17:08:47.778183 25832 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.047006880634757days
+I01112015 17:09:47.779753 25837 slave.cpp:3926] Current disk usage 3.61%. Max allowed age: 6.046960100580798days
+I01112015 17:10:47.780560 25836 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046924494372176days
+I01112015 17:11:47.781684 25834 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046875963193206days
+I01112015 17:12:47.782977 25835 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046825847663032days
+I01112015 17:13:47.783713 25834 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046771312626864days
+I01112015 17:14:47.784826 25837 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046730786590822days
+I01112015 17:15:47.785943 25839 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046637976965058days
+I01112015 17:16:47.787364 25833 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046585943536053days
+I01112015 17:17:47.787735 25834 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046451774005186days
+I01112015 17:18:47.789026 25834 slave.cpp:3926] Current disk usage 3.62%. Max allowed age: 6.046385731576065days
+I01112015 17:19:47.789602 25835 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.046246975765405days
+I01112015 17:20:47.790591 25838 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.046197027009040days
+I01112015 17:21:47.791198 25833 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.046146244383623days
+I01112015 17:22:47.792544 25836 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.046093293698657days
+I01112015 17:23:47.865088 25839 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.046045179454213days
+I01112015 17:24:47.865864 25839 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045987642489456days
+I01112015 17:25:47.866344 25836 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045940695661690days
+I01112015 17:26:47.867446 25839 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045889829649363days
+I01112015 17:27:47.868077 25836 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045838796863229days
+I01112015 17:28:47.869272 25839 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045800021952199days
+I01112015 17:29:47.869956 25835 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045744736433877days
+I01112015 17:30:47.870537 25833 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045721137939641days
+I01112015 17:31:47.871527 25832 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045677359814283days
+I01112015 17:32:47.872359 25835 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045630246212697days
+I01112015 17:33:47.873293 25838 slave.cpp:3926] Current disk usage 3.63%. Max allowed age: 6.045592471944525days
+I01112015 17:34:47.874686 25834 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045530265313067days
+I01112015 17:35:47.875344 25837 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045486320413889days
+I01112015 17:36:47.875944 25837 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045436288270625days
+I01112015 17:37:47.876739 25832 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045390675633345days
+I01112015 17:38:47.877903 25832 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045345646704398days
+I01112015 17:39:47.879130 25835 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045291361828959days
+I01112015 17:40:47.879889 25836 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045232157126088days
+I01112015 17:41:47.880959 25838 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045179956923276days
+I01112015 17:42:47.881394 25838 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045127756720463days
+I01112015 17:43:47.882359 25834 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045079308928392days
+I01112015 17:44:47.883605 25833 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.045029860493461days
+I01112015 17:45:47.884466 25837 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.044974658362060days
+I01112015 17:46:47.885836 25832 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.044929796206922days
+I01112015 17:47:47.886466 25836 slave.cpp:3926] Current disk usage 3.64%. Max allowed age: 6.044882682605347days
+I01112015 17:48:47.887563 25835 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044839238027604days
+I01112015 17:49:47.888742 25833 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044782618318808days
+I01112015 17:50:47.889467 25833 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044741175026794days
+I01112015 17:51:47.890547 25838 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044701316085995days
+I01112015 17:52:47.892081 25835 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044669212127395days
+I01112015 17:53:47.892884 25837 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044628352543727days
+I01112015 17:54:47.894078 25833 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044576902823067days
+I01112015 17:55:47.895416 25838 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044505607018900days
+I01112015 17:56:47.896692 25834 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044457909708981days
+I01112015 17:57:47.897171 25835 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044407544018091days
+I01112015 17:58:47.897940 25836 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044358262356980days
+I01112015 17:59:47.899550 25839 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044299557975544days
+I01112015 18:00:47.900233 25835 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044249108897743days
+I01112015 18:01:47.996651 25838 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044221341058229days
+I01112015 18:02:47.997280 25839 slave.cpp:3926] Current disk usage 3.65%. Max allowed age: 6.044158300557708days
+I01112015 18:03:47.998246 25833 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.044109936152546days
+I01112015 18:04:47.999250 25833 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.044073913009398days
+I01112015 18:05:48.000064 25834 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.044025215056609days
+I01112015 18:06:48.000921 25833 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043971180341875days
+I01112015 18:07:48.001323 25832 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043922815936725days
+I01112015 18:08:48.002552 25837 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043895798579352days
+I01112015 18:09:48.003955 25836 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043854271900440days
+I01112015 18:10:48.004803 25835 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043808158941725days
+I01112015 18:11:48.005609 25833 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043757209542500days
+I01112015 18:12:48.006584 25835 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043711013196875days
+I01112015 18:13:48.007846 25837 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043660814279792days
+I01112015 18:14:48.008647 25839 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043613533904410days
+I01112015 18:15:48.009640 25834 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043564335630196days
+I01112015 18:16:48.010874 25833 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043521307986979days
+I01112015 18:17:48.012258 25837 slave.cpp:3926] Current disk usage 3.66%. Max allowed age: 6.043476695992569days
+I01112015 18:18:48.013337 25836 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043423078212361days
+I01112015 18:19:48.014467 25836 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043381551533449days
+I01112015 18:20:48.015280 25833 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043323347473449days
+I01112015 18:21:48.015738 25838 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043281820794525days
+I01112015 18:22:48.016669 25832 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043243629591829days
+I01112015 18:23:48.018079 25838 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043200185014097days
+I01112015 18:24:48.018959 25833 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043133308715926days
+I01112015 18:25:48.019665 25834 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043082692864317days
+I01112015 18:26:48.020875 25835 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.043029492018646days
+I01112015 18:27:48.022318 25839 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.042979710036088days
+I01112015 18:28:48.023443 25832 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.042934847880961days
+I01112015 18:29:48.024647 25833 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.042881146713842days
+I01112015 18:30:48.025193 25838 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.042836117784907days
+I01112015 18:31:48.026759 25834 slave.cpp:3926] Current disk usage 3.67%. Max allowed age: 6.042801678992952days
+I01112015 18:32:48.027400 25832 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042740389617454days
+I01112015 18:33:48.028156 25832 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042697612134954days
+I01112015 18:34:48.028597 25838 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042655918682223days
+I01112015 18:35:48.029202 25834 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042598965425810days
+I01112015 18:36:48.029629 25833 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042538676693171days
+I01112015 18:37:48.030443 25837 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042489061484421days
+I01112015 18:38:48.031258 25838 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042434109513739days
+I01112015 18:39:48.118583 25833 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042377489804931days
+I01112015 18:40:48.120100 25838 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042321787352095days
+I01112015 18:41:48.121354 25832 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042285013726794days
+I01112015 18:42:48.122050 25836 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042231145785868days
+I01112015 18:43:48.123425 25832 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042183365089051days
+I01112015 18:44:48.124121 25838 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042140170672026days
+I01112015 18:45:48.125473 25836 slave.cpp:3926] Current disk usage 3.68%. Max allowed age: 6.042090221915660days
+I01112015 18:46:48.126869 25835 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.042044192343854days
+I01112015 18:47:48.127858 25838 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.042025013355602days
+I01112015 18:48:48.128585 25837 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041977316045683days
+I01112015 18:49:48.129477 25834 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041924532134537days
+I01112015 18:50:48.130285 25839 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041871414675763days
+I01112015 18:51:48.131324 25832 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041832639764722days
+I01112015 18:52:48.132335 25837 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041776520377361days
+I01112015 18:53:48.133383 25836 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041719150186412days
+I01112015 18:54:48.134354 25836 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041683210430162days
+I01112015 18:55:48.134845 25833 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041639932626238days
+I01112015 18:56:48.135974 25832 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041583980012674days
+I01112015 18:57:48.137392 25837 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041526359661007days
+I01112015 18:58:48.138799 25839 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041486917654733days
+I01112015 18:59:48.140209 25837 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041444140172234days
+I01112015 19:00:48.141582 25833 slave.cpp:3926] Current disk usage 3.69%. Max allowed age: 6.041402696880231days
+I01112015 19:01:48.142783 25834 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041348078457164days
+I01112015 19:02:48.143795 25832 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041295377932917days
+I01112015 19:03:48.145217 25833 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041247263688472days
+I01112015 19:04:48.145956 25837 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041199066057118days
+I01112015 19:05:48.147141 25837 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041161541949676days
+I01112015 19:06:48.147641 25837 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041109341746863days
+I01112015 19:07:48.149116 25838 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041060727180984days
+I01112015 19:08:48.149755 25839 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.041008777138889days
+I01112015 19:09:48.151203 25833 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.040963831596851days
+I01112015 19:10:48.152405 25837 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.040869687780602days
+I01112015 19:11:48.153637 25834 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.040782631851308days
+I01112015 19:12:48.154139 25832 slave.cpp:3926] Current disk usage 3.70%. Max allowed age: 6.040684068529074days
+I01112015 19:13:48.155594 25835 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040634036385798days
+I01112015 19:14:48.156324 25832 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040532054200439days
+I01112015 19:15:48.156987 25834 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040481188188114days
+I01112015 19:16:48.196422 25833 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040426152830509days
+I01112015 19:17:48.197151 25834 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040382791639676days
+I01112015 19:18:48.197940 25837 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040277140430475days
+I01112015 19:19:48.198643 25837 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040245703567118days
+I01112015 19:20:48.200099 25833 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040188166602361days
+I01112015 19:21:48.201129 25836 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040137550750752days
+I01112015 19:22:48.201792 25833 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040079013143125days
+I01112015 19:23:48.203094 25834 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040042239517824days
+I01112015 19:24:48.204411 25837 slave.cpp:3926] Current disk usage 3.71%. Max allowed age: 6.040001129773438days
+I01112015 19:25:48.205615 25834 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039936921856238days
+I01112015 19:26:48.206198 25837 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039897313076158days
+I01112015 19:27:48.206845 25837 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039855035915092days
+I01112015 19:28:48.207716 25836 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039810507307581days
+I01112015 19:29:48.209132 25834 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039754471307118days
+I01112015 19:30:48.210429 25838 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039702771425740days
+I01112015 19:31:48.211169 25838 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039669166502847days
+I01112015 19:32:48.212566 25838 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039624137573901days
+I01112015 19:33:48.214090 25838 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039575356234213days
+I01112015 19:34:48.214840 25836 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039528409406447days
+I01112015 19:35:48.215708 25834 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039488383691829days
+I01112015 19:36:48.216351 25832 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039443271375983days
+I01112015 19:37:48.217061 25837 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039387819083866days
+I01112015 19:38:48.217771 25836 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039341956285868days
+I01112015 19:39:48.218468 25833 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039296176874768days
+I01112015 19:40:48.219912 25834 slave.cpp:3926] Current disk usage 3.72%. Max allowed age: 6.039251898427975days
+I01112015 19:41:48.220501 25835 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.039201449350185days
+I01112015 19:42:48.221560 25838 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.039156587195047days
+I01112015 19:43:48.222131 25832 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.039114059873276days
+I01112015 19:44:48.223162 25839 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.039065111759768days
+I01112015 19:45:48.224508 25836 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.039025836527303days
+I01112015 19:46:48.225548 25836 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038980223890023days
+I01112015 19:47:48.226768 25834 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038931776097963days
+I01112015 19:48:48.227422 25836 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038879325734433days
+I01112015 19:49:48.228922 25836 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038827208918530days
+I01112015 19:50:48.229544 25834 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038793603995625days
+I01112015 19:51:48.230460 25835 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038740653310671days
+I01112015 19:52:48.230967 25835 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038683283119722days
+I01112015 19:53:48.231415 25838 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038638921286019days
+I01112015 19:54:48.396456 25839 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038604649267882days
+I01112015 19:55:48.397676 25838 slave.cpp:3926] Current disk usage 3.73%. Max allowed age: 6.038559120017500days
+I01112015 19:56:48.399147 25839 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038503167403947days
+I01112015 19:57:48.400341 25837 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038458138475011days
+I01112015 19:58:48.401476 25837 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038401518766204days
+I01112015 19:59:48.402402 25839 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038353738069387days
+I01112015 20:00:48.403867 25833 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038314379450012days
+I01112015 20:01:48.404650 25832 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038264931015081days
+I01112015 20:02:48.405468 25837 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038210729526539days
+I01112015 20:03:48.406102 25833 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038162114960659days
+I01112015 20:04:48.407325 25838 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038112916686447days
+I01112015 20:05:48.408174 25838 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038064885828912days
+I01112015 20:06:48.409153 25833 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.038016187876122days
+I01112015 20:07:48.409629 25832 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.037966489280475days
+I01112015 20:08:48.410778 25834 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.037923545024166days
+I01112015 20:09:48.411149 25833 slave.cpp:3926] Current disk usage 3.74%. Max allowed age: 6.037873929815428days
+I01112015 20:10:48.412099 25835 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037827149761470days
+I01112015 20:11:48.412693 25838 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037774115689606days
+I01112015 20:12:48.413658 25832 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037738426094074days
+I01112015 20:13:48.414436 25838 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037683390736482days
+I01112015 20:14:48.415469 25833 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037630106503889days
+I01112015 20:15:48.416896 25835 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037575071146296days
+I01112015 20:16:48.418184 25832 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037521036431563days
+I01112015 20:17:48.419109 25834 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037473088960938days
+I01112015 20:18:48.420197 25832 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037429894543912days
+I01112015 20:19:48.420730 25837 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037390452537639days
+I01112015 20:20:48.422029 25836 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037336334435995days
+I01112015 20:21:48.422708 25833 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037281799399838days
+I01112015 20:22:48.423388 25833 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037242190619746days
+I01112015 20:23:48.424166 25838 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037197328464618days
+I01112015 20:24:48.425472 25832 slave.cpp:3926] Current disk usage 3.75%. Max allowed age: 6.037153717113067days
+I01112015 20:25:48.426779 25837 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.037098264820938days
+I01112015 20:26:48.427774 25837 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.037046648326470days
+I01112015 20:27:48.428822 25832 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.037000368593946days
+I01112015 20:28:48.430001 25839 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036952170962593days
+I01112015 20:29:48.431102 25833 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036906308164595days
+I01112015 20:30:48.431633 25837 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036866449223785days
+I01112015 20:31:48.497215 25835 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036813498538831days
+I01112015 20:32:48.498031 25833 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036763716556274days
+I01112015 20:33:48.499420 25836 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036717019889225days
+I01112015 20:34:48.500325 25832 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036657565025637days
+I01112015 20:35:48.501618 25834 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036616371894352days
+I01112015 20:36:48.502200 25838 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036565505882026days
+I01112015 20:37:48.503330 25837 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036519309536400days
+I01112015 20:38:48.504927 25835 slave.cpp:3926] Current disk usage 3.76%. Max allowed age: 6.036474113833646days
+I01112015 20:39:48.506233 25838 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036425415880868days
+I01112015 20:40:48.507438 25836 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036378302279294days
+I01112015 20:41:48.508594 25832 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036330521582466days
+I01112015 20:42:48.509369 25837 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036280406052292days
+I01112015 20:43:48.510659 25833 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036237211635266days
+I01112015 20:44:48.511481 25836 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036181675956239days
+I01112015 20:45:48.511991 25838 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036134478967755days
+I01112015 20:46:48.512894 25838 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036085197306632days
+I01112015 20:47:48.513787 25838 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.036039834830070days
+I01112015 20:48:48.514686 25832 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035991970746343days
+I01112015 20:49:48.515403 25835 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035949693585278days
+I01112015 20:50:48.516121 25835 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035901412567026days
+I01112015 20:51:48.517356 25839 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035855382995220days
+I01112015 20:52:48.518677 25833 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035806935203148days
+I01112015 20:53:48.519516 25836 slave.cpp:3926] Current disk usage 3.77%. Max allowed age: 6.035756319351539days
+I01112015 20:54:48.520725 25834 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035709205749965days
+I01112015 20:55:48.521723 25839 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035546768058148days
+I01112015 20:56:48.522888 25836 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035374157163866days
+I01112015 20:57:48.523777 25832 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035335965961169days
+I01112015 20:58:48.524895 25838 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035283849145266days
+I01112015 20:59:48.526244 25833 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035137505126204days
+I01112015 21:00:48.527633 25835 slave.cpp:3926] Current disk usage 3.78%. Max allowed age: 6.035089557655567days
+I01112015 21:01:48.528085 25833 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034926953189943days
+I01112015 21:02:48.528949 25836 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034884175707454days
+I01112015 21:03:48.529738 25834 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034834560498703days
+I01112015 21:04:48.531044 25838 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034786112706644days
+I01112015 21:05:48.531889 25835 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034731661057385days
+I01112015 21:06:48.532907 25839 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034682045848646days
+I01112015 21:07:48.533834 25836 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034644104806667days
+I01112015 21:08:48.535284 25838 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034598658943194days
+I01112015 21:09:48.596367 25839 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034541038591528days
+I01112015 21:10:48.597404 25833 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034501429811435days
+I01112015 21:11:48.598120 25834 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034460486840868days
+I01112015 21:12:48.599475 25834 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034396445697477days
+I01112015 21:13:48.600479 25837 slave.cpp:3926] Current disk usage 3.79%. Max allowed age: 6.034358921590023days
+I01112015 21:14:48.601384 25832 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034310473797963days
+I01112015 21:15:48.602164 25839 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034256188922511days
+I01112015 21:16:48.603521 25836 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034207240809017days
+I01112015 21:17:48.604364 25839 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034163295909838days
+I01112015 21:18:48.605440 25834 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034097253480729days
+I01112015 21:19:48.606910 25834 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034071820474560days
+I01112015 21:20:48.608247 25839 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.034023456069398days
+I01112015 21:21:48.609333 25833 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033972173122546days
+I01112015 21:22:48.610021 25836 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033917471312581days
+I01112015 21:23:48.610872 25839 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033874360282454days
+I01112015 21:24:48.611848 25835 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033824745073716days
+I01112015 21:25:48.612530 25837 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033780466626921days
+I01112015 21:26:48.613126 25833 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033728433197928days
+I01112015 21:27:48.613899 25836 slave.cpp:3926] Current disk usage 3.80%. Max allowed age: 6.033686072649954days
+I01112015 21:28:48.615377 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033638959048379days
+I01112015 21:29:48.616807 25836 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033582255952673days
+I01112015 21:30:48.618336 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033518048035474days
+I01112015 21:31:48.619132 25839 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033483275695903days
+I01112015 21:32:48.619598 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033434410969305days
+I01112015 21:33:48.620981 25836 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033385963177246days
+I01112015 21:34:48.622258 25835 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033334096522049days
+I01112015 21:35:48.623003 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033289901462164days
+I01112015 21:36:48.624027 25833 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033246623658241days
+I01112015 21:37:48.625334 25835 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033211100836517days
+I01112015 21:38:48.626749 25839 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033150561943160days
+I01112015 21:39:48.627145 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033099362383218days
+I01112015 21:40:48.627706 25837 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033056668287627days
+I01112015 21:41:48.628293 25832 slave.cpp:3926] Current disk usage 3.81%. Max allowed age: 6.033012139680116days
+I01112015 21:42:48.629530 25836 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032941761131910days
+I01112015 21:43:48.631244 25833 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032890644958878days
+I01112015 21:44:48.632719 25836 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032857040035972days
+I01112015 21:45:48.633528 25837 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032812594815370days
+I01112015 21:46:48.715036 25835 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032766481856655days
+I01112015 21:47:48.716434 25833 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032718534386030days
+I01112015 21:48:48.716806 25837 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032674589486851days
+I01112015 21:49:48.717576 25838 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032578777932488days
+I01112015 21:50:48.719219 25834 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032556930563264days
+I01112015 21:51:48.719604 25837 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032531831104722days
+I01112015 21:52:48.720893 25837 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032476295425695days
+I01112015 21:53:48.721736 25833 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032433517943206days
+I01112015 21:54:48.722240 25837 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032379316454652days
+I01112015 21:55:48.723055 25832 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032318860948206days
+I01112015 21:56:48.724254 25836 slave.cpp:3926] Current disk usage 3.82%. Max allowed age: 6.032263492042986days
+I01112015 21:57:48.725618 25833 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.032233389370127days
+I01112015 21:58:48.726200 25838 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.032013498100452days
+I01112015 21:59:48.727114 25832 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031961464671447days
+I01112015 22:00:48.727970 25836 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031917603159190days
+I01112015 22:01:48.729199 25836 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031867404242107days
+I01112015 22:02:48.730370 25835 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031985813647847days
+I01112015 22:03:48.731753 25836 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031905178510278days
+I01112015 22:04:48.733120 25832 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031894171438750days
+I01112015 22:05:48.734148 25832 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031846974450266days
+I01112015 22:06:48.735597 25837 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031798526658206days
+I01112015 22:07:48.736917 25838 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031756082723334days
+I01112015 22:08:48.737882 25839 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031689039651354days
+I01112015 22:09:48.739430 25838 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031637089609259days
+I01112015 22:10:48.740159 25839 slave.cpp:3926] Current disk usage 3.83%. Max allowed age: 6.031591143424352days
+I01112015 22:11:48.741060 25832 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031516261983264days
+I01112015 22:12:48.741755 25832 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031463311298299days
+I01112015 22:13:48.742854 25834 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031417531887211days
+I01112015 22:14:48.743289 25836 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031375838434479days
+I01112015 22:15:48.743971 25836 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031307044237488days
+I01112015 22:16:48.745277 25839 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031250257754873days
+I01112015 22:17:48.746642 25836 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031215235254583days
+I01112015 22:18:48.748070 25833 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031165703432754days
+I01112015 22:19:48.749040 25839 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031104080509618days
+I01112015 22:20:48.750151 25839 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031049128538935days
+I01112015 22:21:48.751467 25838 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.031011187496956days
+I01112015 22:22:48.752455 25836 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.030964991151331days
+I01112015 22:23:48.753226 25837 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.030913124496146days
+I01112015 22:24:48.808663 25834 slave.cpp:3926] Current disk usage 3.84%. Max allowed age: 6.030869262983877days
+I01112015 22:25:48.810103 25837 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030825901793044days
+I01112015 22:26:48.811005 25836 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030770115953299days
+I01112015 22:27:48.812310 25834 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030721501387419days
+I01112015 22:28:48.813096 25835 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030685561631169days
+I01112015 22:29:48.813678 25833 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030635112553379days
+I01112015 22:30:48.814586 25832 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030584163154144days
+I01112015 22:31:48.815397 25837 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030539968094259days
+I01112015 22:32:48.816228 25836 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030483598546181days
+I01112015 22:33:48.817112 25834 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030438319456517days
+I01112015 22:34:48.818541 25839 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030388537473958days
+I01112015 22:35:48.819480 25833 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030318242312673days
+I01112015 22:36:48.820875 25838 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030291808663645days
+I01112015 22:37:48.822293 25836 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030240692490602days
+I01112015 22:38:48.823696 25836 slave.cpp:3926] Current disk usage 3.85%. Max allowed age: 6.030191244055671days
+I01112015 22:39:48.824286 25836 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030141545460023days
+I01112015 22:40:48.825234 25837 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030106522959734days
+I01112015 22:41:48.826509 25835 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030006458673195days
+I01112015 22:42:48.827172 25839 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.030003706905313days
+I01112015 22:43:48.828232 25832 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029921987737975days
+I01112015 22:44:48.829372 25839 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029908729220011days
+I01112015 22:45:48.830834 25834 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029864617547026days
+I01112015 22:46:48.831753 25834 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029774059367709days
+I01112015 22:47:48.833281 25835 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029762468587847days
+I01112015 22:48:48.834622 25835 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029705848879051days
+I01112015 22:49:48.835824 25836 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029631884693912days
+I01112015 22:50:48.836762 25839 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029620627461679days
+I01112015 22:51:48.837528 25837 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029527734449005days
+I01112015 22:52:48.839037 25836 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029500133383310days
+I01112015 22:53:48.840220 25839 slave.cpp:3926] Current disk usage 3.86%. Max allowed age: 6.029465694591354days
+I01112015 22:54:48.840864 25832 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029419915180267days
+I01112015 22:55:48.841908 25838 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029371884322720days
+I01112015 22:56:48.843441 25835 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029321602018738days
+I01112015 22:57:48.844471 25837 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029231544160856days
+I01112015 22:58:48.845481 25837 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029186682005718days
+I01112015 22:59:48.846290 25833 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029174674291343days
+I01112015 23:00:48.847378 25837 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029137150183889days
+I01112015 23:01:48.848778 25836 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029089786421586days
+I01112015 23:02:48.887987 25839 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.029037002510440days
+I01112015 23:03:48.889420 25837 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.028984468760012days
+I01112015 23:04:48.890522 25839 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.028891659134247days
+I01112015 23:05:48.891377 25832 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.028840126026679days
+I01112015 23:06:48.892441 25833 slave.cpp:3926] Current disk usage 3.87%. Max allowed age: 6.028836290229028days
+I01112015 23:07:48.893882 25832 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028749484460452days
+I01112015 23:08:48.894642 25834 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028700786507674days
+I01112015 23:09:48.895951 25836 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028697784579074days
+I01112015 23:10:48.897440 25833 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028642915995289days
+I01112015 23:11:48.898255 25837 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028608810750961days
+I01112015 23:12:48.899271 25839 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028496738750035days
+I01112015 23:13:48.900789 25836 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028443871451979days
+I01112015 23:14:48.901954 25836 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028391504475358days
+I01112015 23:15:48.902863 25835 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028392671892037days
+I01112015 23:16:48.904289 25836 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028235404188356days
+I01112015 23:17:48.905517 25838 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028302030325810days
+I01112015 23:18:48.906426 25838 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028249663349190days
+I01112015 23:19:48.907240 25837 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028143261657836days
+I01112015 23:20:48.907997 25839 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028134255872049days
+I01112015 23:21:48.909430 25832 slave.cpp:3926] Current disk usage 3.88%. Max allowed age: 6.028077552776343days
+I01112015 23:22:48.910161 25833 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.028033941424792days
+I01112015 23:23:48.910848 25832 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027905442203496days
+I01112015 23:24:48.912101 25832 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027881676935440days
+I01112015 23:25:48.913671 25834 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027856660863808days
+I01112015 23:26:48.915163 25839 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027803126470509days
+I01112015 23:27:48.916736 25832 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027751843523657days
+I01112015 23:28:48.918112 25838 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027700310416088days
+I01112015 23:29:48.919406 25834 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027637019754850days
+I01112015 23:30:48.920392 25837 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027577648278172days
+I01112015 23:31:48.921106 25836 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027546711736250days
+I01112015 23:32:48.922546 25834 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027502016354931days
+I01112015 23:33:48.923746 25833 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027445229872315days
+I01112015 23:34:48.925027 25833 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027394780794525days
+I01112015 23:35:48.926069 25832 slave.cpp:3926] Current disk usage 3.89%. Max allowed age: 6.027369097627639days
+I01112015 23:36:48.927407 25839 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027318315002222days
+I01112015 23:37:48.928472 25839 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027285460561481days
+I01112015 23:38:48.929378 25838 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027225755537176days
+I01112015 23:39:48.960003 25832 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027181894024907days
+I01112015 23:40:48.961441 25834 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027108263387396days
+I01112015 23:41:48.962703 25837 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027086332631262days
+I01112015 23:42:48.963379 25832 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.027034132428449days
+I01112015 23:43:48.964177 25836 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026965921939792days
+I01112015 23:44:48.965378 25837 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026937653778854days
+I01112015 23:45:48.966995 25838 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026892708236817days
+I01112015 23:46:48.968159 25838 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026848596563831days
+I01112015 23:47:48.969257 25839 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026766043527431days
+I01112015 23:48:48.970419 25832 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026735440533137days
+I01112015 23:49:48.970844 25838 slave.cpp:3926] Current disk usage 3.90%. Max allowed age: 6.026689327574421days
+I01112015 23:50:48.971536 25835 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026544150972037days
+I01112015 23:51:48.972704 25833 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026491533834699days
+I01112015 23:52:48.974109 25838 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026443086042628days
+I01112015 23:53:48.975117 25836 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026401642750625days
+I01112015 23:54:48.976112 25836 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026351944154976days
+I01112015 23:55:48.977648 25839 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026299994112882days
+I01112015 23:56:48.979277 25836 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026215439790752days
+I01112015 23:57:48.980687 25835 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026202014498981days
+I01112015 23:58:48.981989 25835 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026140891897280days
+I01112015 23:59:48.983235 25837 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026102116986250days
+I01122015 00:00:48.984330 25838 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026048582592951days
+I01122015 00:01:48.985666 25834 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.026002719794953days
+I01122015 00:02:48.986240 25839 slave.cpp:3926] Current disk usage 3.91%. Max allowed age: 6.025953354746921days
+I01122015 00:03:48.987607 25836 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025919833210938days
+I01122015 00:04:48.988606 25835 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025871802353403days
+I01122015 00:05:48.989248 25838 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025824772138727days
+I01122015 00:06:48.990738 25832 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025778492406204days
+I01122015 00:07:48.992069 25833 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025681096500636days
+I01122015 00:08:48.993250 25838 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025682180530405days
+I01122015 00:09:48.994122 25836 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025631648065706days
+I01122015 00:10:48.995626 25834 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025516157201655days
+I01122015 00:11:48.996131 25839 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025531333618449days
+I01122015 00:12:48.996963 25832 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025486304689502days
+I01122015 00:13:48.997767 25838 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025439774796261days
+I01122015 00:14:48.998561 25837 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025389409105371days
+I01122015 00:15:48.999642 25839 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025336708581134days
+I01122015 00:16:49.001117 25836 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025249319104213days
+I01122015 00:17:49.024864 25837 slave.cpp:3926] Current disk usage 3.92%. Max allowed age: 6.025250653294711days
+I01122015 00:18:49.025672 25838 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025200537764525days
+I01122015 00:19:49.026391 25833 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025145835954560days
+I01122015 00:20:49.027554 25835 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025102474763727days
+I01122015 00:21:49.028755 25839 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025053943584745days
+I01122015 00:22:49.029510 25839 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.025008414334375days
+I01122015 00:23:49.030069 25834 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024958632351817days
+I01122015 00:24:49.031033 25834 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024852314047373days
+I01122015 00:25:49.032079 25835 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024871576422535days
+I01122015 00:26:49.033516 25834 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024819459606632days
+I01122015 00:27:49.034945 25839 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024770845040752days
+I01122015 00:28:49.036291 25832 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024723147730834days
+I01122015 00:29:49.037619 25835 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024672448492315days
+I01122015 00:30:49.038287 25839 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024605405420336days
+I01122015 00:31:49.039002 25833 slave.cpp:3926] Current disk usage 3.93%. Max allowed age: 6.024586726753519days
+I01122015 00:32:49.039806 25837 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024534943485231days
+I01122015 00:33:49.041045 25836 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024491832455116days
+I01122015 00:34:49.041605 25835 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024433878555834days
+I01122015 00:35:49.042315 25839 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024367919513622days
+I01122015 00:36:49.043628 25835 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024326642995416days
+I01122015 00:37:49.044626 25835 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024295623066597days
+I01122015 00:38:49.045959 25834 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024243172703067days
+I01122015 00:39:49.047508 25839 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024196392649109days
+I01122015 00:40:49.048218 25839 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024126431035440days
+I01122015 00:41:49.048960 25833 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024072896642141days
+I01122015 00:42:49.049660 25832 slave.cpp:3926] Current disk usage 3.94%. Max allowed age: 6.024026616909618days

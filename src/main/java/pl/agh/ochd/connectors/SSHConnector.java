@@ -24,7 +24,6 @@ public class SSHConnector implements Connector {
     private static final String FROM_LINE = "line=`grep -n %s %s | cut -d ':' -f 1`; tail --line=+$((line+1)) %s";
     private static final String ROLLED_LINES =
             "line=`grep -n %s %s | cut -d ':' -f 1`; tail --line=+$((line+1)) %s > XD.log; tail %s >> XD.log; tail XD.log; rm XD.log";
-    private static final SimpleDateFormat COMPARE_FORMAT = new SimpleDateFormat("ddMM");
 
     private JSch jsch;
     private Session session;
@@ -36,7 +35,7 @@ public class SSHConnector implements Connector {
         this.jsch = new JSch();
     }
 
-    private boolean connect() {
+    boolean connect() {
 
         try {
             session = jsch.getSession(host.getUserName(), host.getHostName(), host.getPort());
@@ -51,7 +50,7 @@ public class SSHConnector implements Connector {
         }
     }
 
-    private void disconnect() {
+    void disconnect() {
 
         if (session != null && session.isConnected()) {
             LOGGER.debug("Closing SSH session");
@@ -59,7 +58,7 @@ public class SSHConnector implements Connector {
         }
     }
 
-    private Optional<String> executeCommand(String command) {
+    Optional<String> executeCommand(String command) {
 
         if (!session.isConnected()) {
             return Optional.empty();
@@ -93,12 +92,12 @@ public class SSHConnector implements Connector {
             return Optional.empty();
         }
 
-        String command = isFileRolled() ? getRolledLinesCommand() : getLinesCommand();
+        String command = isFileRolled(host) ? getRolledLinesCommand() : getLinesCommand();
         Optional<String> result = executeCommand(command);
         disconnect();
 
         if (result.isPresent()) {
-            return Optional.of(new ArrayList<>(Arrays.asList(result.get().split("\n"))));
+            return Optional.of(new ArrayList<>(Arrays.asList(result.get().split("\\n"))));
         } else {
             return Optional.empty();
         }
@@ -130,23 +129,4 @@ public class SSHConnector implements Connector {
         return String.format(ROLLED_LINES, lastLineText, rolledFileFullPath, rolledFileFullPath, logFileFullPath);
     }
 
-    private boolean isFileRolled() {
-
-        if (host.getLastReceivedLogDate() == null) {
-            return false;
-        }
-        return !COMPARE_FORMAT.format(new Date()).equals(COMPARE_FORMAT.format(host.getLastReceivedLogDate()));
-    }
-
-
-    public static void main(String[] args) {
-
-        // TODO move to tests
-        RemoteHost rh = new RemoteHost("91.240.28.246", "dominik", "dominik4321", 20080);
-        SSHConnector ssh = new SSHConnector(rh);
-        ssh.connect();
-        String result = ssh.executeCommand("cat plik.txt > nowy.txt; cat plik2.txt >> nowy.txt; cat nowy.txt; rm nowy.txt").get();
-        System.out.println(result);
-        ssh.disconnect();
-    }
 }
