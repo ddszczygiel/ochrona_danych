@@ -1,61 +1,152 @@
 package pl.agh.ochd.connectors;
 
 
-import com.jcabi.ssh.SSH;
-import com.jcabi.ssh.Shell;
+import com.jcraft.jsch.*;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.agh.ochd.model.RemoteHost;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.UnknownHostException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 public class SSHConnector implements Connector {
 
-    private static final String SSH_COMMAND = "cat %s%s";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SSHConnector.class);
 
+    private static final String WHOLE_FILE = "tail %s";
+    private static final String FROM_LINE = "line=`grep -n %s %s | cut -d ':' -f 1`; tail --line=+$((line+1)) %s";
+    private static final String ROLLED_LINES =
+            "line=`grep -n %s %s | cut -d ':' -f 1`; tail --line=+$((line+1)) %s > XD.log; tail %s >> XD.log; tail XD.log; rm XD.log";
+    private static final SimpleDateFormat COMPARE_FORMAT = new SimpleDateFormat("ddMM");
+
+    private JSch jsch;
+    private Session session;
     private RemoteHost host;
-    private Shell shell;
 
     public SSHConnector(RemoteHost host) {
 
         this.host = host;
+        this.jsch = new JSch();
     }
 
     private boolean connect() {
 
         try {
-            shell = new SSH(host.getHostName(), 22, host.getUserName(), host.getPasswd());
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+            session = jsch.getSession(host.getUserName(), host.getHostName(), host.getPort());
+            session.setPassword(host.getPasswd());
+            session.setConfig("StrictHostKeyChecking", "no");
+            LOGGER.debug("Successfully opened SSH session");
+            session.connect();
+            return true;
+        } catch (JSchException e) {
+            LOGGER.error("Could not open SSH session", e);
             return false;
         }
-        return true;
     }
 
+    private void disconnect() {
+
+        if (session != null && session.isConnected()) {
+            LOGGER.debug("Closing SSH session");
+            session.disconnect();
+        }
+    }
+
+    private Optional<String> executeCommand(String command) {
+
+        if (!session.isConnected()) {
+            return Optional.empty();
+        }
+
+        Channel channel = null;
+        try {
+            channel = session.openChannel("exec");
+            ((ChannelExec) channel).setCommand(command);
+            InputStream commandResult = channel.getInputStream();
+            LOGGER.debug("Executing command: " + command);
+            channel.connect();
+            return Optional.of(IOUtils.toString(commandResult, Charset.forName(StandardCharsets.UTF_8.name())).trim());
+        } catch (JSchException e) {
+            LOGGER.error("Error occurred during SSH command execution", e);
+        } catch (IOException e) {
+            LOGGER.error("Error occurred during SSH input stream operation", e);
+        } finally {
+            if (channel != null && channel.isConnected()) {
+                channel.disconnect();
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<List<String>> getLogs() {
 
-        boolean isConnected = connect();
-        if (!isConnected) {
+        if (!connect()) {
             return Optional.empty();
         }
 
-        String command = String.format(SSH_COMMAND, host.getLogPath(), host.getLogFile());
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
-            int result = shell.exec(command, null, out, null);
-            if (result != 0) {
-                return Optional.empty();
-            }
-            String logs = out.toString(StandardCharsets.UTF_8.name());
-            return Optional.of(new ArrayList<>(Arrays.asList(logs.split("\\n"))));
-        } catch (IOException e) {
-            e.printStackTrace();
+        String command = isFileRolled() ? getRolledLinesCommand() : getLinesCommand();
+        Optional<String> result = executeCommand(command);
+        disconnect();
+
+        if (result.isPresent()) {
+            return Optional.of(new ArrayList<>(Arrays.asList(result.get().split("\n"))));
+        } else {
             return Optional.empty();
         }
+    }
+
+    private String getLinesCommand() {
+
+        String logFileFullPath = host.getLogPath() + host.getLogFile();
+        if (host.getLastReceivedLogDate() == null) {
+            return String.format(WHOLE_FILE, logFileFullPath);
+        } else {
+            SimpleDateFormat logDateFormatter = new SimpleDateFormat(host.getLogDatePattern());
+            String lastLineText = logDateFormatter.format(host.getLastReceivedLogDate());
+            return String.format(FROM_LINE, lastLineText, logFileFullPath, logFileFullPath);
+        }
+    }
+
+    private String getRolledLinesCommand() {
+
+        Date yesterday = Date.from(Instant.now().minus(1, ChronoUnit.DAYS));
+        SimpleDateFormat rolledFormatter = new SimpleDateFormat(host.getOldLogPattern());
+
+        String rolledFileFullPath = host.getLogPath() + rolledFormatter.format(yesterday);
+        String logFileFullPath = host.getLogPath() + host.getLogFile();
+
+        SimpleDateFormat logDateFormatter = new SimpleDateFormat(host.getLogDatePattern());
+        String lastLineText = logDateFormatter.format(host.getLastReceivedLogDate());
+
+        return String.format(ROLLED_LINES, lastLineText, rolledFileFullPath, rolledFileFullPath, logFileFullPath);
+    }
+
+    private boolean isFileRolled() {
+
+        if (host.getLastReceivedLogDate() == null) {
+            return false;
+        }
+        return !COMPARE_FORMAT.format(new Date()).equals(COMPARE_FORMAT.format(host.getLastReceivedLogDate()));
+    }
+
+
+    public static void main(String[] args) {
+
+        // TODO move to tests
+        RemoteHost rh = new RemoteHost("91.240.28.246", "dominik", "dominik4321", 20080);
+        SSHConnector ssh = new SSHConnector(rh);
+        ssh.connect();
+        String result = ssh.executeCommand("cat plik.txt > nowy.txt; cat plik2.txt >> nowy.txt; cat nowy.txt; rm nowy.txt").get();
+        System.out.println(result);
+        ssh.disconnect();
     }
 }

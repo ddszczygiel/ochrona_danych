@@ -29,16 +29,10 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>com.jcraft</groupId>-->
-            <!--<artifactId>jsch</artifactId>-->
-            <!--<version>0.1.53</version>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>com.jcabi</groupId>
-            <artifactId>jcabi-ssh</artifactId>
-            <version>1.5.2</version>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
         </dependency>
 
         <dependency>
@@ -100,7 +94,6 @@
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
 
     </dependencies>
 </project>

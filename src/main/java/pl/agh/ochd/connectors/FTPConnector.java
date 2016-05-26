@@ -62,6 +62,7 @@ public class FTPConnector implements Connector {
         }
 
         try {
+            // FIXME figure out how to set this header with range
             InputStream fileStream = ftpClient.retrieveFileStream(host.getLogPath()+host.getLogFile());
             String logs = IOUtils.toString(fileStream);
             ftpClient.completePendingCommand();

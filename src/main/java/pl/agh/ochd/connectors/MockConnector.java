@@ -1,8 +1,5 @@
 package pl.agh.ochd.connectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,11 +11,9 @@ import java.util.stream.Stream;
 
 public class MockConnector implements Connector {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MockConnector.class);
-
     private String path;
-    private boolean firstTime = true;
     private int offset = 0;
+    private int limit = 30;
 
     public MockConnector(String path) {
         this.path = path;
@@ -27,27 +22,17 @@ public class MockConnector implements Connector {
     @Override
     public Optional<List<String>> getLogs() {
 
-
         try {
-            Stream<String> stream = Files.lines(Paths.get(path)).skip(offset);
-            if(firstTime) {
-                stream = stream.limit(50);
-                firstTime = false;
-                offset = offset + 50;
-            } else {
-                stream = stream.limit(20);
-                offset = offset + 20;
-            }
-
+            Stream<String> stream = Files.lines(Paths.get(path)).skip(offset).limit(limit);
+            offset += limit;
             List<String> result = stream.collect(Collectors.toList());
-            if(result.size() != 0) {
+            if (result.size() != 0) {
                 return Optional.of(result);
             } else {
                 return Optional.empty();
             }
-
         } catch (IOException e) {
-            LOGGER.error("Error while reading from file!", e);
+            e.printStackTrace();
             return Optional.empty();
         }
     }

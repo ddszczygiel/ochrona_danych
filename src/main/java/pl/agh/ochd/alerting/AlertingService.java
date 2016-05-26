@@ -4,6 +4,7 @@ package pl.agh.ochd.alerting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.agh.ochd.model.LogSample;
+import pl.agh.ochd.model.NotificationData;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -16,32 +17,37 @@ public class AlertingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AlertingService.class);
 
-    private final String SUBJECT = "[ALERTS] Host name: ";
-    private final String BODY = "Pattern with name: %s matches: \n\n";
-    private final String FROM;
-    private final String USERNAME;
-    private final String PASSWORD;
+    private static final String SUBJECT = "[ALERTS] Host name: ";
+    private static final String BODY = "Pattern with name: %s matches: \n\n";
+    private final String from;
+    private final String userName;
+    private final String password;
+    private final String smtpHost;
+    private final String smtpPort;
 
     private Address[] emails;
     private Properties properties;
     private Session session;
 
-    public AlertingService(String emailAddress, String userName, String password, Collection<String> recipients) {
+    public AlertingService(String emailAddress, String userName, String password, String smtpHost, String smtpPort, Collection<String> recipients) {
 
-        FROM = emailAddress;
-        USERNAME = userName;
-        PASSWORD = password;
+        this.from = emailAddress;
+        this.userName = userName;
+        this.password = password;
+        this.smtpHost = smtpHost;
+        this.smtpPort = smtpPort;
+
         properties = System.getProperties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.host", smtpHost);
+        properties.put("mail.smtp.port", smtpPort);
 
         session = Session.getDefaultInstance(properties, new Authenticator() {
 
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(USERNAME, PASSWORD);
+                return new PasswordAuthentication(AlertingService.this.userName, AlertingService.this.password);
             }
         });
         prepareRecipients(recipients);
@@ -66,11 +72,12 @@ public class AlertingService {
 
         MimeMessage message = new MimeMessage(session);
         try {
-            message.setFrom(new InternetAddress(FROM));
+            message.setFrom(new InternetAddress(from));
             message.addRecipients(Message.RecipientType.TO, emails);
             message.setSubject(SUBJECT + hostName);
             message.setText(messageBody);
-        } catch (MessagingException e) {}
+        } catch (MessagingException e) {
+        }
 
         return message;
     }
@@ -80,26 +87,17 @@ public class AlertingService {
         return String.format(BODY, patternKey) + String.join("\n", alerts.stream().map(LogSample::getMessage).collect(Collectors.toList()));
     }
 
-    public void sendAlertNotification(String hostName, Collection<LogSample> alerts, String patternName) {
+    public void sendAlertNotification(NotificationData notificationData) {
 
-        LOGGER.debug("Sending email notification:\n\n " + prepareMessageBody(patternName, alerts));
-
-        // FIXME uncomment
-//        MimeMessage message = prepareMessage(hostName, prepareMessageBody(patternName, alerts));
-//
-//        try {
-//            Transport.send(message);
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//            // TODO
-//        }
+        LOGGER.debug("Sending email notification:\n\n " + prepareMessageBody(notificationData.getPatternName(), notificationData.getMatched()));
+        MimeMessage message = prepareMessage(notificationData.getHostName(),
+                prepareMessageBody(notificationData.getPatternName(), notificationData.getMatched()));
+        try {
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
-
-    public static void main(String[] args) {
-
-        List<String> emails = new ArrayList<>(Arrays.asList("ddszczygiel@gmail.com"));
-        AlertingService alertingService = new AlertingService("ddszczygiel@gmail.com", "pass", "ddszczygiel@gmail.com", emails);
-        alertingService.sendAlertNotification("dupa", Collections.emptyList(), "lala");
-    }
-
 }
+
+

@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import pl.agh.ochd.model.RemoteHost;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,17 +23,14 @@ public class HTTPConnector implements Connector {
         this.host = host;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (host.getUserName() != null && host.getPasswd() != null) {
-            builder.authenticator(new Authenticator() {
-
-                public Request authenticate(Route route, Response response) throws IOException {
-                    // this is triggered when 401 response arrives
-                    if (responseCount(response) >= 3) {
-                        // 3 times authentication failure - stop retrying
-                        return null;
-                    }
-                    String credential = Credentials.basic(host.getUserName(), host.getPasswd());
-                    return response.request().newBuilder().header("Authorization", credential).build();
+            builder.authenticator((route, response) -> {
+                // this is triggered when 401 response arrives
+                if (responseCount(response) >= 3) {
+                    // 3 times authentication failure - stop retrying
+                    return null;
                 }
+                String credential = Credentials.basic(host.getUserName(), host.getPasswd());
+                return response.request().newBuilder().header("Authorization", credential).build();
             });
         }
 
@@ -51,16 +49,32 @@ public class HTTPConnector implements Connector {
         return result;
     }
 
+    private String prepareRange(long lastByte) {
+
+        return "" + lastByte + "-";
+    }
+
+    private long getLastReceivedByte(String rangeHeaderResponse) {
+
+        if (rangeHeaderResponse != null) {
+            return Long.parseLong(rangeHeaderResponse.split("-")[1]);
+        }
+
+        // TODO what to do here ???
+        return 0L;
+    }
+
     public Optional<List<String>> getLogs() {
 
         Request request = new Request.Builder()
                 .url(host.getLogPath()+host.getLogFile())
-//                .addHeader("BlaBla", "trololo")
+                .addHeader("Range", prepareRange(host.getLastReceivedByte()))
                 .build();
 
         Response response = null;
         try {
             response = httpClient.newCall(request).execute();
+            host.setLastReceivedByte(getLastReceivedByte(response.header("Range")));
             String file = IOUtils.toString(response.body().byteStream());
             return Optional.of(new ArrayList<>(Arrays.asList(file.split("\\n"))));
         } catch (IOException e) {

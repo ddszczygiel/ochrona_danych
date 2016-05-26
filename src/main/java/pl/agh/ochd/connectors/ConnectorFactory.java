@@ -22,7 +22,7 @@ public final class ConnectorFactory {
             case FTP:
                 return new FTPConnector(remoteHost);
             case HTTP:
-                return new SSHConnector(remoteHost);
+                return new HTTPConnector(remoteHost);
             case MOCK:
                 return new MockConnector(path);
             default:

@@ -13,7 +13,6 @@ public class LogHelper {
 
     private static final String TIMESTAMP_GROUP = "(?<timestamp>%s)";
 
-
     private List<String> filterLatestLogs(List<String> logs, Date lastReceivedLogDate, String logDateFormat, String logDatePattern) {
 
         int pos = 0;
@@ -42,7 +41,7 @@ public class LogHelper {
         return logs.subList(pos, logs.size());
     }
 
-    private List<LogSample> convertToDomainModel(List<String> logs, String logDateFormat, String logDatePattern) {
+    public List<LogSample> convertToDomainModel(List<String> logs, String logDateFormat, String logDatePattern) {
 
         String namedTimestampGroup = String.format(TIMESTAMP_GROUP, logDatePattern);
         Pattern timestampPattern = Pattern.compile(namedTimestampGroup);
@@ -53,13 +52,13 @@ public class LogHelper {
             Matcher match = timestampPattern.matcher(line);
             if (match.find()) {
                 String timestamp = match.group("timestamp");
-                Date timestampDate = null;
+                Date timestampDate;
                 try {
                     timestampDate = formatter.parse(timestamp);
+                    list.add(new LogSample(timestampDate, line));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                list.add(new LogSample(timestampDate, line));
             }
         }
 

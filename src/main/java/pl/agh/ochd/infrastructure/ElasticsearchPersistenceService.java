@@ -56,7 +56,7 @@ public class ElasticsearchPersistenceService implements PersistenceService {
                         .get();
 
             } catch (IOException e) {
-                LOGGER.error("Error while persisting sample.", e);
+                LOGGER.error("Error while persisting sample", e);
             }
         });
 

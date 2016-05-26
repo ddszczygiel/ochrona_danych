@@ -3,12 +3,9 @@ package pl.agh.ochd.execution;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.agh.ochd.alerting.AlertingService;
 import pl.agh.ochd.connectors.Connector;
 import pl.agh.ochd.connectors.ConnectorFactory;
-import pl.agh.ochd.model.RemoteHost;
-import pl.agh.ochd.model.LogSample;
-import pl.agh.ochd.model.ResourceId;
+import pl.agh.ochd.model.*;
 import pl.agh.ochd.logs.LogHelper;
 import pl.agh.ochd.infrastructure.PersistenceService;
 
@@ -18,79 +15,131 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 
-public class AnalyzerWorker implements Callable<Boolean> {
+public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyzerWorker.class);
-    private static final Date FUTURE_DATE = Date.from(Instant.now().plus(1, ChronoUnit.DAYS));
+    private static final Date FUTURE_DATE = Date.from(Instant.now().plus(10, ChronoUnit.YEARS));
 
-    private int callCount;
     private RemoteHost host;
     private Connector connector;
     private PersistenceService service;
-    private AlertingService alertingService;
     private LogHelper helper;
     private ResourceId resourceId;
-    private Map<String, Pattern> patterns;
 
 
-    public AnalyzerWorker(RemoteHost host, PersistenceService service, AlertingService alertingService, Map<String, Pattern> patterns) {
+    public AnalyzerWorker(RemoteHost host, PersistenceService service) {
 
         this.connector = ConnectorFactory.getConnector(host);
         this.host = host;
         this.service = service;
-        this.alertingService = alertingService;
-        this.patterns = patterns;
         this.resourceId = new ResourceId(host.getHostName());
         this.helper = new LogHelper();
     }
 
     @Override
-    public Boolean call() throws Exception {
+    public Collection<NotificationData> call() throws Exception {
 
-        callCount++;
         // get logs
+        LOGGER.debug("Starting log worker");
         Optional<List<String>> logs = connector.getLogs();
         if (!logs.isPresent()) {
             // something goes wrong
-            return false;
+            LOGGER.error("Could not retrieve logs from host: " + host.getHostName());
+            return Collections.emptyList();
         }
+
         List<String> lines = logs.get();
-        LOGGER.debug("Retrieved logs. Count: " + lines.size());
-        // prepare to insert
-        List<LogSample> logSamples = helper.prepareLogsToInsert(lines, host.getLastReceivedLogDate(), host.getLogDateFormat(), host.getLogDatePattern());
-        if (logSamples.size() == 0) {
-            // no new logs
-            return true;
-        }
-        LOGGER.debug("Filtered logs. Count: " + logSamples.size());
-        // insert to db
-        LOGGER.debug("Storing logs to database");
-        service.saveLogs(resourceId, logSamples);
-        LOGGER.debug("Logs stored successfully");
-        // check for errors
-        LOGGER.debug("Starting analysis...");
-        patterns.forEach((key, val) -> {
-            Collection<LogSample> matched = service.loadLogs(resourceId, host.getLastReceivedLogDate(), FUTURE_DATE, Optional.of(val));
-            // send alert mails
-            if (!matched.isEmpty()) {
-                LOGGER.debug("Match found ! Sending notification ...");
-                alertingService.sendAlertNotification(host.getHostName(), matched, key);
-            }
-        });
+        LOGGER.debug("Retrieved logs count: " + lines.size());
+        LOGGER.debug("Pushing logs to db");
+        service.saveLogs(resourceId, helper.convertToDomainModel(lines, host.getLogDateFormat(), host.getLogDatePattern()));
+        Date lastReceivedLogDate = helper.getLastReceivedLogDate(lines.get(lines.size() - 1), host.getLogDateFormat(), host.getLogDatePattern());
 
-        // replace last received date
+        LOGGER.debug("Analyzing patterns...");
+        List<NotificationData> patternsMatched = analyzePatterns();
+        LOGGER.debug("Analyzing sequences...");
+        List<NotificationData> sequenceMatched = analyzeSequences();
+        LOGGER.debug("Analyzing time sequences...");
+        List<NotificationData> timeSequencesMatched = analyzeTimeSequences();
+
+        List<NotificationData> allMatches = new ArrayList<>(patternsMatched);
+        allMatches.addAll(sequenceMatched);
+        allMatches.addAll(timeSequencesMatched);
+        LOGGER.debug("Notifications count: " + allMatches.size());
+
         // TODO store it somehow
-        host.setLastReceivedLogDate(helper.getLastReceivedLogDate(logSamples.get(logSamples.size()-1).getMessage(),
-                                    host.getLogDateFormat(), host.getLogDatePattern()));
-
-        return true;
+        host.setLastReceivedLogDate(lastReceivedLogDate);
+        LOGGER.debug("Last received log date: " + lastReceivedLogDate);
+        LOGGER.debug("Finished log retrieving for host: " + host.getHostName());
+        return allMatches;
     }
 
-    public int getCallCount() {
-        return callCount;
+    private List<NotificationData> analyzePatterns() {
+
+        List<NotificationData> notifications = new ArrayList<>();
+        for (Map.Entry<String, Pattern> entry : host.getPatterns().entrySet()) {
+            Collection<LogSample> matched = service.loadLogs(resourceId, host.getLastReceivedLogDate(), FUTURE_DATE, Optional.of(entry.getValue()));
+            if (!matched.isEmpty()) {
+                notifications.add(new NotificationData(host.getHostName(), entry.getKey(), matched));
+            }
+        }
+
+        return notifications;
     }
 
-    public void resetCallCount() {
-        callCount = 0;
+    private List<NotificationData> analyzeSequences() {
+
+        List<NotificationData> notifications = new ArrayList<>();
+        Date lastMatchDate = host.getLastReceivedLogDate();
+        for (Sequence seq : host.getSequences()) {
+            boolean match = true;
+            for (Pattern pat : seq.getPatterns()) {
+                Collection<LogSample> matched = service.loadLogs(resourceId, lastMatchDate, FUTURE_DATE, Optional.of(pat));
+                if (matched.isEmpty()) {
+                    match = false;
+                    break;
+                } else {
+                    // optional must have value
+                    lastMatchDate = matched.stream().map(LogSample::getTime).min(Date::compareTo).get();
+                }
+            }
+
+            if (match) {
+                notifications.add(new NotificationData(host.getHostName(), seq.getName(), Collections.EMPTY_LIST));
+            }
+        }
+
+        return notifications;
+    }
+
+    private List<NotificationData> analyzeTimeSequences() {
+
+        List<NotificationData> notifications = new ArrayList<>();
+        List<Date> occurenceDates = new ArrayList<>();
+        Date lastMatchDate = host.getLastReceivedLogDate();
+        for (TimeSequence seq : host.getTimeSequences()) {
+            boolean match = true;
+            for (Pattern pat : seq.getPatterns()) {
+                Collection<LogSample> matched = service.loadLogs(resourceId, lastMatchDate, FUTURE_DATE, Optional.of(pat));
+                if (matched.isEmpty()) {
+                    match = false;
+                    break;
+                } else {
+                    // optional must have value
+                    occurenceDates.add(lastMatchDate);
+                    lastMatchDate = matched.stream().map(LogSample::getTime).min(Date::compareTo).get();
+                }
+            }
+
+            if (match) {
+                Date minDate = occurenceDates.stream().min(Date::compareTo).get();
+                Date maxDate = occurenceDates.stream().max(Date::compareTo).get();
+                long diffMinutes = ChronoUnit.MINUTES.between(minDate.toInstant(), maxDate.toInstant());
+                if (diffMinutes <= seq.getInterval()) {
+                    notifications.add(new NotificationData(host.getHostName(), seq.getName(), Collections.EMPTY_LIST));
+                }
+            }
+        }
+
+        return notifications;
     }
 }
