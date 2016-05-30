@@ -32,21 +32,21 @@ public class ConfigurationHolder {
 
     public ConfigurationHolder(Config configuration) {
 
-        this.refreshTime = configuration.getLong("refresh.time");
-        this.maxOperationTime = configuration.getLong("max.operation.time");
+        this.refreshTime = configuration.getLong("configuration.refresh.time");
+        this.maxOperationTime = configuration.getLong("configuration.max.operation.time");
 
         this.emailAddress = configuration.getString("configuration.email.address");
         this.emailLogin = configuration.getString("configuration.email.login");
         this.emailPassword = configuration.getString("configuration.email.password");
-        this.emailHost = configuration.getString("email.smtp.host");
-        this.emailPort = configuration.getString("email.smtp.port");
+        this.emailHost = configuration.getString("configuration.email.smtp.host");
+        this.emailPort = configuration.getString("configuration.email.smtp.port");
 
-        this.dbAddress = configuration.getString("db.address");
-        this.dbPort = configuration.getInt("db.port");
+        this.dbAddress = configuration.getString("configuration.db.address");
+        this.dbPort = configuration.getInt("configuration.db.port");
 
         this.hosts = prepareHosts(configuration.getConfigList("configuration.remote.hosts"));
         this.emails = configToStringMap(configuration.getConfig("configuration.emails"));
-        this.patterns = getPatterns(configuration.getConfig("global.patterns"));
+        this.patterns = getPatterns(configuration.getConfig("configuration.global.patterns"));
     }
 
 

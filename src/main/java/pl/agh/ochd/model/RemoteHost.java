@@ -4,12 +4,7 @@ package pl.agh.ochd.model;
 import com.typesafe.config.Config;
 import pl.agh.ochd.connectors.ConnectorType;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -46,22 +41,26 @@ public class RemoteHost {
         this.logDateFormat = params.getString("logDateFormat");
         this.logDatePattern = params.getString("logDatePattern");
         this.oldLogPattern = params.getString("oldLogPattern");
-        this.lastReceivedLogDate = null;
+        this.lastReceivedLogDate = new Date();
         this.lastReceivedByte = params.getLong("lastReceivedByte");
         this.properties = configToStringMap(params.getConfig("properties"));
         this.patterns = preparePatternMap(params.getConfig("patterns"));
         this.sequences = params.getConfigList("sequences").stream().map(Sequence::new).collect(Collectors.toList());
-        this.timeSequences = params.getConfigList("sequences").stream().map(TimeSequence::new).collect(Collectors.toList());
+        this.timeSequences = params.getConfigList("timeSequences").stream().map(TimeSequence::new).collect(Collectors.toList());
     }
 
     // for tests purpose
-    public RemoteHost(ConnectorType connectorType, String hostName, String logDateFormat, String logDatePattern) {
+    public RemoteHost(ConnectorType connectorType, String hostName, String logDateFormat, String logDatePattern, Date lastReceivedLogDate, Map<String, Pattern> patterns,
+                      List<Sequence> sequences) {
 
         this.connectorType = connectorType;
         this.hostName = hostName;
         this.logDateFormat = logDateFormat;
         this.logDatePattern = logDatePattern;
-        this.lastReceivedLogDate = Date.from(Instant.now().minus(100, ChronoUnit.DAYS));  // TODO
+        this.lastReceivedLogDate = lastReceivedLogDate;
+        this.patterns = patterns;
+        this.sequences = sequences;
+        this.timeSequences = new ArrayList<>();
     }
 
     public RemoteHost(String hostName, String userName, String passwd, int port, String logFile, String logPath) {

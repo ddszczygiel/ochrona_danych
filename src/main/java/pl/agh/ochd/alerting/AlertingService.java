@@ -95,7 +95,7 @@ public class AlertingService {
         try {
             Transport.send(message);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            LOGGER.error("Could not send email notification", e);
         }
     }
 }

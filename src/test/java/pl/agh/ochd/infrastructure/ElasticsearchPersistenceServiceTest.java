@@ -30,18 +30,16 @@ public class ElasticsearchPersistenceServiceTest {
 
         //given
         ResourceId id = new ResourceId("test_machine");
-        Date now = new Date();
-        Date nowPlus = Date.from(Instant.now().plusSeconds(60));
-        Date nowMinus = Date.from(Instant.now().minusSeconds(60));
+        Date nowMinus = Date.from(Instant.now().minusSeconds(5));
         Date future = Date.from(Instant.now().plusSeconds(600));
-        LogSample s1 = new LogSample(now, "some message");
-        LogSample s2 = new LogSample(nowPlus, "SOme message2");
-        Pattern pattern = Pattern.compile("^SO.*");
+        LogSample s1 = new LogSample(new Date(), "some test");
+        LogSample s2 = new LogSample(new Date(), "some message included");
+        Pattern pattern = Pattern.compile(".*message.*");
         //when
-        service.saveLogs(id, Arrays.asList(s1, s1));
+        service.saveLogs(id, Arrays.asList(s1, s2));
         //then
-        Collection<LogSample> logSamples = service.loadLogs(id, now, future, Optional.empty());
-        Collection<LogSample> logSamplesPattern = service.loadLogs(id, now, future, Optional.of(pattern));
+        Collection<LogSample> logSamples = service.loadLogs(id, nowMinus, future, Optional.empty());
+        Collection<LogSample> logSamplesPattern = service.loadLogs(id, nowMinus, future, Optional.of(pattern));
         Assert.assertEquals(2, logSamples.size());
         Assert.assertEquals(1, logSamplesPattern.size());
     }

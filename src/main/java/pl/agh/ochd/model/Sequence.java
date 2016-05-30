@@ -18,6 +18,11 @@ public class Sequence {
         this.patterns = preparePatternList(config.getStringList("patterns"));
     }
 
+    public Sequence(String name, List<Pattern> patterns) {
+        this.name = name;
+        this.patterns = patterns;
+    }
+
     private List<Pattern> preparePatternList(List<String> patterns) {
 
         return patterns.stream().map(Pattern::compile).collect(Collectors.toList());

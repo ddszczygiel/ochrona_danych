@@ -7,7 +7,7 @@ import java.net.URL;
 
 public final class ConnectorFactory {
 
-    private static URL url = ConnectorFactory.class.getClassLoader().getResource("/logs.log");
+    private static URL url = ConnectorFactory.class.getClassLoader().getResource("logs.log");
     private static String path = url.getPath();
 
     private ConnectorFactory() {}

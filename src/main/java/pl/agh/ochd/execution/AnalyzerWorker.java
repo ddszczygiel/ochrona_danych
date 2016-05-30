@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyzerWorker.class);
-    private static final Date FUTURE_DATE = Date.from(Instant.now().plus(10, ChronoUnit.YEARS));
+    private static final Date FUTURE_DATE = Date.from(Instant.now().plus(48*3600, ChronoUnit.SECONDS));
 
     private RemoteHost host;
     private Connector connector;

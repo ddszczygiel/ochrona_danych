@@ -13,14 +13,14 @@ import pl.agh.ochd.infrastructure.ElasticsearchPersistenceService;
 import pl.agh.ochd.infrastructure.PersistenceService;
 import pl.agh.ochd.model.NotificationData;
 import pl.agh.ochd.model.RemoteHost;
+import pl.agh.ochd.model.Sequence;
 
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -43,7 +43,7 @@ public class LogAnalyzerApp {
         configurationHolder = new ConfigurationHolder(config);
     }
 
-    public void init() throws UnknownHostException {
+    public void init(Optional<RemoteHost> mock) throws UnknownHostException {
 
         LOGGER.debug("Initializing App components");
         persistenceService = new ElasticsearchPersistenceService(configurationHolder.getDbAddress(),
@@ -54,21 +54,20 @@ public class LogAnalyzerApp {
                                                 configurationHolder.getEmailPort(), configurationHolder.getEmails().values());
 
         executors = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        workers = configurationHolder.getHosts().stream()
-                .map(host -> new AnalyzerWorker(host, persistenceService))
-                .collect(Collectors.toList());
+        workers = new ArrayList<>();
+        prepareWorkers(mock);
     }
 
-    private void prepareWorkers() {
+    private void prepareWorkers(Optional<RemoteHost> mock) {
 
-//        URL url = Main.class.getClassLoader().getResource("logexample.log");
-//        String path = url.getPath();
-//
-////        mmdd hh:mm:ss.uuuuuu
-//        RemoteHost mocked = new RemoteHost(ConnectorType.MOCK, "machine1","MMddyyyy hh:mm:ss", "\\d{8} \\d{2}:\\d{2}:\\d{2}");
-//        workers.add(new AnalyzerWorker(mocked, persistenceService, alertingService, configurationHolder.getPatterns()));
-
-
+//        mmdd hh:mm:ss.uuuuuu
+        if (mock.isPresent()) {
+            workers.add(new AnalyzerWorker(mock.get(), persistenceService));
+        } else {
+            workers = configurationHolder.getHosts().stream()
+                    .map(host -> new AnalyzerWorker(host, persistenceService))
+                    .collect(Collectors.toList());
+        }
     }
 
     public void start() {
@@ -116,9 +115,24 @@ public class LogAnalyzerApp {
 
     public static void main(String[] args) throws UnknownHostException {
 
+        Map<String, Pattern> patterns = new HashMap<>();
+        patterns.put("pat1", Pattern.compile(".*Slave hostname.*"));
+        patterns.put("pat2", Pattern.compile(".*Recovering Docker containers.*"));
+
+        List<Sequence> sequences = new ArrayList<>();
+        List<Pattern> seqPatterns = new ArrayList<>();
+        seqPatterns.add(Pattern.compile(".*Launching task.*"));
+        seqPatterns.add(Pattern.compile(".*Launching executor.*"));
+        sequences.add(new Sequence("task_seq", seqPatterns));
+
+//        I01 11 2015 13:15:46.816980
+        Date lastReceived = new Date(115, 0, 10, 13, 0, 0);
+        RemoteHost mockedHost = new RemoteHost(ConnectorType.MOCK, "machine101","MMddyyyy hh:mm:ss", "\\d{8} \\d{2}:\\d{2}:\\d{2}", lastReceived, patterns, sequences);
+
+        // regular start
         LogAnalyzerApp app = new LogAnalyzerApp();
         app.loadConfiguration();
-        app.init();
+        app.init(Optional.of(mockedHost));
         app.start();
     }
 }

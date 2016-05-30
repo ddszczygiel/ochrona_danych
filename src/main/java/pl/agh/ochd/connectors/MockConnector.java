@@ -13,7 +13,7 @@ public class MockConnector implements Connector {
 
     private String path;
     private int offset = 0;
-    private int limit = 30;
+    private int limit = 20;
 
     public MockConnector(String path) {
         this.path = path;
