@@ -19,6 +19,9 @@ public interface Connector {
         if (host.getLastReceivedLogDate() == null) {
             return false;
         }
-        return !COMPARE_FORMAT.format(new Date()).equals(COMPARE_FORMAT.format(host.getLastReceivedLogDate()));
+        String d1 = COMPARE_FORMAT.format(new Date());
+        String d2 = COMPARE_FORMAT.format(host.getLastReceivedLogDate());
+
+        return !d1.equals(d2);
     }
 }

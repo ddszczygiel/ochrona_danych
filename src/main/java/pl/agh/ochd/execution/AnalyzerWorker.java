@@ -53,7 +53,12 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
         LOGGER.debug("Retrieved logs count: " + lines.size());
         LOGGER.debug("Pushing logs to db");
         service.saveLogs(resourceId, helper.convertToDomainModel(lines, host.getLogDateFormat(), host.getLogDatePattern()));
-        Date lastReceivedLogDate = helper.getLastReceivedLogDate(lines.get(lines.size() - 1), host.getLogDateFormat(), host.getLogDatePattern());
+        // get last log date
+        Date lastReceivedLogDate = helper.getLogDate(lines.get(lines.size() - 1), host.getLogDateFormat(), host.getLogDatePattern());
+        if (host.getLastReceivedLogDate() == null) {
+            // get first date occurrence in first run
+            host.setLastReceivedLogDate(helper.getLogDate(lines.get(0), host.getLogDateFormat(), host.getLogDatePattern()));
+        }
 
         TimeUnit.SECONDS.sleep(10);
         LOGGER.debug("Analyzing patterns...");
@@ -68,7 +73,6 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
         allMatches.addAll(timeSequencesMatched);
         LOGGER.debug("Notifications count: " + allMatches.size());
 
-        // TODO store it somehow
         host.setLastReceivedLogDate(lastReceivedLogDate);
         LOGGER.debug("Last received log date: " + lastReceivedLogDate);
         LOGGER.debug("Finished log retrieving for host: " + host.getHostName());
@@ -119,7 +123,7 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
     private List<NotificationData> analyzeTimeSequences() {
 
         List<NotificationData> notifications = new ArrayList<>();
-        List<Date> occurenceDates = new ArrayList<>();
+        List<Date> occurrenceDates = new ArrayList<>();
         Date lastMatchDate = host.getLastReceivedLogDate();
         for (TimeSequence seq : host.getTimeSequences()) {
             boolean match = true;
@@ -130,14 +134,14 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
                     break;
                 } else {
                     // optional must have value
-                    occurenceDates.add(lastMatchDate);
+                    occurrenceDates.add(lastMatchDate);
                     lastMatchDate = matched.stream().map(LogSample::getTime).min(Date::compareTo).get();
                 }
             }
 
             if (match) {
-                Date minDate = occurenceDates.stream().min(Date::compareTo).get();
-                Date maxDate = occurenceDates.stream().max(Date::compareTo).get();
+                Date minDate = occurrenceDates.stream().min(Date::compareTo).get();
+                Date maxDate = occurrenceDates.stream().max(Date::compareTo).get();
                 long diffMinutes = ChronoUnit.MINUTES.between(minDate.toInstant(), maxDate.toInstant());
                 if (diffMinutes <= seq.getInterval()) {
                     notifications.add(new NotificationData(host.getHostName(), seq.getName(), Collections.EMPTY_LIST));

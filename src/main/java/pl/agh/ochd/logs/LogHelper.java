@@ -17,7 +17,7 @@ public class LogHelper {
 
         String namedTimestampGroup = String.format(TIMESTAMP_GROUP, logDatePattern);
         Pattern timestampPattern = Pattern.compile(namedTimestampGroup);
-        SimpleDateFormat formatter = new SimpleDateFormat(logDateFormat);
+        SimpleDateFormat formatter = new SimpleDateFormat(logDateFormat, Locale.ENGLISH);
 
         List<LogSample> list = new ArrayList<>();
         for (String line : logs) {
@@ -29,7 +29,6 @@ public class LogHelper {
                     timestampDate = formatter.parse(timestamp);
                     list.add(new LogSample(timestampDate, line));
                 } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -37,11 +36,11 @@ public class LogHelper {
         return list;
     }
 
-    public Date getLastReceivedLogDate(String lastLog, String logDateFormat, String logDatePattern) {
+    public Date getLogDate(String lastLog, String logDateFormat, String logDatePattern) {
 
         String namedTimestampGroup = String.format(TIMESTAMP_GROUP, logDatePattern);
         Pattern timestampPattern = Pattern.compile(namedTimestampGroup);
-        SimpleDateFormat formatter = new SimpleDateFormat(logDateFormat);
+        SimpleDateFormat formatter = new SimpleDateFormat(logDateFormat, Locale.ENGLISH);
 
         Matcher match = timestampPattern.matcher(lastLog);
         if (match.find()) {
@@ -49,7 +48,6 @@ public class LogHelper {
             try {
                 return formatter.parse(timestamp);
             } catch (ParseException e) {
-                e.printStackTrace();
                 return null;
             }
         }

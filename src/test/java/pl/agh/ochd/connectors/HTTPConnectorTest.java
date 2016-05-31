@@ -49,4 +49,14 @@ public class HTTPConnectorTest {
         Assert.assertEquals(41899L, testHost.getLastReceivedByte());
     }
 
+    @Test
+    public void testRangeHeaderParse() {
+
+        //given
+        String rangeHeader = "bytes 0-29280/29281";
+        //when
+        http.setLastReceivedByte(rangeHeader);
+        //then
+        Assert.assertEquals(29280L, testHost.getLastReceivedByte());
+    }
 }

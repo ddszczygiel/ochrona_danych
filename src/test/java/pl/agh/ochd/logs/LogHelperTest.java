@@ -30,7 +30,7 @@ public class LogHelperTest {
         //from Date class int y = year + 1900;
         Date expected = new Date(115, 0, 11, 22, 4, 48);
         //when
-        Date lastReceivedLogDate = logHelper.getLastReceivedLogDate(lastLog, logDateFormat, logDatePattern);
+        Date lastReceivedLogDate = logHelper.getLogDate(lastLog, logDateFormat, logDatePattern);
         //then
         Assert.assertEquals(expected, lastReceivedLogDate);
     }

@@ -61,14 +61,15 @@ public class HTTPConnector implements Connector {
         return "bytes=" + lastByte + "-";
     }
 
-    private void setLastReceivedByte(String contentHeader) {
+    void setLastReceivedByte(String rangeHeader) {
 
-        if (contentHeader == null) {
+        if (rangeHeader == null) {
             return;
         }
-
-        LOGGER.debug("Header Content-Length: " + contentHeader);
-        host.setLastReceivedByte(Long.parseLong(contentHeader));
+//        bytes 0-29280/29281
+        String lastByte = rangeHeader.substring(rangeHeader.indexOf('-') + 1, rangeHeader.indexOf('/'));
+        LOGGER.debug("Header Content-Range: " + rangeHeader);
+        host.setLastReceivedByte(Long.parseLong(lastByte));
     }
 
     Optional<List<String>> getLines(String url, Optional<Long> range) {
@@ -87,7 +88,7 @@ public class HTTPConnector implements Connector {
         try {
             response = httpClient.newCall(request).execute();
             String content = IOUtils.toString(response.body().byteStream()).trim();
-            setLastReceivedByte(response.header("Content-Length"));
+            setLastReceivedByte(response.header("Content-Range"));
             return Optional.of(new ArrayList<>(Arrays.asList(content.split("\\n"))));
         } catch (IOException e) {
             LOGGER.error("Error while reading response", e);
@@ -123,7 +124,7 @@ public class HTTPConnector implements Connector {
                 lines.addAll(rolledLines.get());
                 return lines.isEmpty() ? Optional.empty() : Optional.of(lines);
             } else {
-                LOGGER.error("Could not retrieve content from rolled file");
+                LOGGER.error("Could not retrieve content from log file");
                 return Optional.empty();
             }
         } else {
@@ -133,27 +134,10 @@ public class HTTPConnector implements Connector {
             if (logLines.isPresent()) {
                 return Optional.of(logLines.get());
             } else {
-                LOGGER.error("Could not retrieve content from rolled file");
+                LOGGER.error("Could not retrieve content from log file");
                 return Optional.empty();
             }
         }
 
     }
-
-    public static void main(String[] args) throws ParseException {
-
-        String date = "29/May/2016:17:02:42 -0700";
-//        String date = "29/May/2016:17:02:42";
-//        String date = "29 may 2016 17:02:42";
-        String line = "158.181.200.34 - - [30/May/2016:08:17:07 -0700] \"GET /img/2.jpg HTTP/1.1\" 200 149392 \"http://www.ultralabsindia.com/contact.html\" \"Mozilla/5.0 (Windows NT 6.1; rv:46.0) Gecko/20100101 Firefox/46.0\" \"www.ultralabsindia.com\"\n";
-        Pattern datePattern = Pattern.compile("\\d{2}/\\w{3}/\\d{4}:\\d{2}:\\d{2}:\\d{2} \\W\\d{4}");
-        Matcher matcher = datePattern.matcher(line);
-        if (matcher.find()) {
-            System.out.println(matcher.group(0));
-        }
-        SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
-//        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
-        System.out.println(format.parse(date));
-    }
-
 }

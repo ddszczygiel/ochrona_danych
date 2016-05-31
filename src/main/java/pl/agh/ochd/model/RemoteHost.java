@@ -41,7 +41,6 @@ public class RemoteHost {
         this.logDateFormat = params.getString("logDateFormat");
         this.logDatePattern = params.getString("logDatePattern");
         this.oldLogPattern = params.getString("oldLogPattern");
-        this.lastReceivedLogDate = new Date();
         this.lastReceivedByte = params.getLong("lastReceivedByte");
         this.properties = configToStringMap(params.getConfig("properties"));
         this.patterns = preparePatternMap(params.getConfig("patterns"));
