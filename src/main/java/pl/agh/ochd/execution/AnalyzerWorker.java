@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
@@ -54,6 +55,7 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
         service.saveLogs(resourceId, helper.convertToDomainModel(lines, host.getLogDateFormat(), host.getLogDatePattern()));
         Date lastReceivedLogDate = helper.getLastReceivedLogDate(lines.get(lines.size() - 1), host.getLogDateFormat(), host.getLogDatePattern());
 
+        TimeUnit.SECONDS.sleep(10);
         LOGGER.debug("Analyzing patterns...");
         List<NotificationData> patternsMatched = analyzePatterns();
         LOGGER.debug("Analyzing sequences...");
@@ -90,8 +92,10 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
 
         List<NotificationData> notifications = new ArrayList<>();
         Date lastMatchDate = host.getLastReceivedLogDate();
+        StringBuilder builder;
         for (Sequence seq : host.getSequences()) {
             boolean match = true;
+            builder = new StringBuilder();
             for (Pattern pat : seq.getPatterns()) {
                 Collection<LogSample> matched = service.loadLogs(resourceId, lastMatchDate, FUTURE_DATE, Optional.of(pat));
                 if (matched.isEmpty()) {
@@ -100,11 +104,12 @@ public class AnalyzerWorker implements Callable<Collection<NotificationData>> {
                 } else {
                     // optional must have value
                     lastMatchDate = matched.stream().map(LogSample::getTime).min(Date::compareTo).get();
+                    builder.append(matched.iterator().next().getMessage()).append("\n");
                 }
             }
 
             if (match) {
-                notifications.add(new NotificationData(host.getHostName(), seq.getName(), Collections.EMPTY_LIST));
+                notifications.add(new NotificationData(host.getHostName(), seq.getName(), Arrays.asList(new LogSample(lastMatchDate, builder.toString()))));
             }
         }
 

@@ -116,23 +116,23 @@ public class LogAnalyzerApp {
     public static void main(String[] args) throws UnknownHostException {
 
         Map<String, Pattern> patterns = new HashMap<>();
-        patterns.put("pat1", Pattern.compile(".*Slave hostname.*"));
-        patterns.put("pat2", Pattern.compile(".*Recovering Docker containers.*"));
+        patterns.put("pat1", Pattern.compile(".*hostname.*"));
+        patterns.put("pat2", Pattern.compile(".*recovering.*"));
 
         List<Sequence> sequences = new ArrayList<>();
         List<Pattern> seqPatterns = new ArrayList<>();
-        seqPatterns.add(Pattern.compile(".*Launching task.*"));
-        seqPatterns.add(Pattern.compile(".*Launching executor.*"));
+        seqPatterns.add(Pattern.compile(".*task.*"));
+        seqPatterns.add(Pattern.compile(".*executor.*"));
         sequences.add(new Sequence("task_seq", seqPatterns));
 
 //        I01 11 2015 13:15:46.816980
-        Date lastReceived = new Date(115, 0, 10, 13, 0, 0);
-        RemoteHost mockedHost = new RemoteHost(ConnectorType.MOCK, "machine101","MMddyyyy hh:mm:ss", "\\d{8} \\d{2}:\\d{2}:\\d{2}", lastReceived, patterns, sequences);
+        Date lastReceived = new Date(113, 0, 10, 13, 0, 0);
+        RemoteHost mockedHost = new RemoteHost(ConnectorType.MOCK, "machine107","MMddyyyy hh:mm:ss", "\\d{8} \\d{2}:\\d{2}:\\d{2}", lastReceived, patterns, sequences);
 
         // regular start
         LogAnalyzerApp app = new LogAnalyzerApp();
         app.loadConfiguration();
-        app.init(Optional.of(mockedHost));
+        app.init(Optional.empty() );
         app.start();
     }
 }

@@ -30,7 +30,7 @@ public class ElasticsearchPersistenceServiceTest {
 
         //given
         ResourceId id = new ResourceId("test_machine");
-        Date nowMinus = Date.from(Instant.now().minusSeconds(5));
+        Date nowMinus = Date.from(Instant.now().minusSeconds(30));
         Date future = Date.from(Instant.now().plusSeconds(600));
         LogSample s1 = new LogSample(new Date(), "some test");
         LogSample s2 = new LogSample(new Date(), "some message included");

@@ -6,6 +6,7 @@ import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -69,21 +70,31 @@ public class ElasticsearchPersistenceService implements PersistenceService {
         SearchRequestBuilder query = client.prepareSearch("logs")
                 .setTypes(id.getValue())
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                .setQuery(QueryBuilders.rangeQuery("timestamp").from(from).to(to));
+                .setQuery(QueryBuilders.rangeQuery("timestamp").from(from).to(to))
+                .setSize(10)
+                .setScroll(new TimeValue(60000));
 
         if (patternOption.isPresent()) {
-            query.setQuery(QueryBuilders.regexpQuery("message", patternOption.get().toString()));
+            query.setQuery(QueryBuilders.regexpQuery("message", patternOption.get().toString().toLowerCase()));
         }
 
         SearchResponse searchResponse = query.execute().actionGet();
         ArrayList<LogSample> samples = new ArrayList<>();
 
-        for (SearchHit hit : searchResponse.getHits().getHits()) {
-            String timestamp = (String) hit.getSource().get("timestamp");
-            String message = (String) hit.getSource().get("message");
-            Date time = Date.from(LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(timestamp)).atZone(ZoneId.systemDefault()).toInstant());
+        while (true) {
+            for (SearchHit hit : searchResponse.getHits().getHits()) {
+                String timestamp = (String) hit.getSource().get("timestamp");
+                String message = (String) hit.getSource().get("message");
+                Date time = Date.from(LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(timestamp)).atZone(ZoneId.systemDefault()).toInstant());
 
-            samples.add(new LogSample(time, message));
+                samples.add(new LogSample(time, message));
+            }
+
+            searchResponse = client.prepareSearchScroll(searchResponse.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+
+            if (searchResponse.getHits().getHits().length == 0) {
+                break;
+            }
         }
         return samples;
     }

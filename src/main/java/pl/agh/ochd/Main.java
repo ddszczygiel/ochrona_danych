@@ -44,8 +44,10 @@ public class Main {
 //        LocalDateTime now = LocalDateTime.now();
 //
 //        Pattern pattern = Pattern.compile(".*AB.*");
-//
-        Collection<LogSample> result = service.loadLogs(new ResourceId("machine101"), lastReceived, future, Optional.empty());
+        Pattern pattern = Pattern.compile(".*hostname.*");
+
+        Collection<LogSample> result = service.loadLogs(new ResourceId("machine106"), lastReceived, future, Optional.of(pattern));
+//        Collection<LogSample> result = service.loadLogs(new ResourceId("machine106"), lastReceived, future, Optional.empty());
 //        Collection<LogSample> result = service.loadLogs(new ResourceId("dupa"), toDate(now.minusMinutes(10)), toDate(now), Optional.of(pattern));
         result.forEach(log -> System.out.println(String.format("%s -> %s", log.getTime(), log.getMessage())));
 //        RemoteHost mockedHost = new RemoteHost(ConnectorType.MOCK, "machine101","MMddyyyy hh:mm:ss", "\\d{8} \\d{2}:\\d{2}:\\d{2}", lastReceived, patterns, sequences);

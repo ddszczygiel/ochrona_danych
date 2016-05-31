@@ -2,16 +2,20 @@ package pl.agh.ochd.connectors;
 
 import okhttp3.*;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.agh.ochd.model.RemoteHost;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class HTTPConnector implements Connector {
@@ -25,7 +29,7 @@ public class HTTPConnector implements Connector {
 
         this.host = host;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        if (host.getUserName() != null && host.getPasswd() != null) {
+        if (StringUtils.isNoneEmpty(host.getUserName()) && StringUtils.isNoneEmpty(host.getPasswd())) {
             builder.authenticator((route, response) -> {
                 // this is triggered when 401 response arrives
                 if (responseCount(response) >= 3) {
@@ -83,7 +87,6 @@ public class HTTPConnector implements Connector {
         try {
             response = httpClient.newCall(request).execute();
             String content = IOUtils.toString(response.body().byteStream()).trim();
-            //TODO check it
             setLastReceivedByte(response.header("Content-Length"));
             return Optional.of(new ArrayList<>(Arrays.asList(content.split("\\n"))));
         } catch (IOException e) {
@@ -135,6 +138,22 @@ public class HTTPConnector implements Connector {
             }
         }
 
+    }
+
+    public static void main(String[] args) throws ParseException {
+
+        String date = "29/May/2016:17:02:42 -0700";
+//        String date = "29/May/2016:17:02:42";
+//        String date = "29 may 2016 17:02:42";
+        String line = "158.181.200.34 - - [30/May/2016:08:17:07 -0700] \"GET /img/2.jpg HTTP/1.1\" 200 149392 \"http://www.ultralabsindia.com/contact.html\" \"Mozilla/5.0 (Windows NT 6.1; rv:46.0) Gecko/20100101 Firefox/46.0\" \"www.ultralabsindia.com\"\n";
+        Pattern datePattern = Pattern.compile("\\d{2}/\\w{3}/\\d{4}:\\d{2}:\\d{2}:\\d{2} \\W\\d{4}");
+        Matcher matcher = datePattern.matcher(line);
+        if (matcher.find()) {
+            System.out.println(matcher.group(0));
+        }
+        SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
+//        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+        System.out.println(format.parse(date));
     }
 
 }
