@@ -35,21 +35,6 @@ public class HTTPConnectorTest {
     }
 
     @Test
-    public void testPartialContent() {
-
-        // whole remote log has content length of: 81899 bytes so trimming it form 40000 should give content length = 41899
-        // that we see on app logs
-
-        //given
-        String url = testHost.getLogPath() + testHost.getLogFile();
-        //when
-        Optional<List<String>> lines = http.getLines(url, Optional.of(40000L));
-        //then
-        Assert.assertTrue(lines.isPresent());
-        Assert.assertEquals(41899L, testHost.getLastReceivedByte());
-    }
-
-    @Test
     public void testRangeHeaderParse() {
 
         //given

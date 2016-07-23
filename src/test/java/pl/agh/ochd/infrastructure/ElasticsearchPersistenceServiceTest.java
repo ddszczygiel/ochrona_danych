@@ -3,6 +3,7 @@ package pl.agh.ochd.infrastructure;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import pl.agh.ochd.model.LogSample;
 import pl.agh.ochd.model.ResourceId;
@@ -26,6 +27,7 @@ public class ElasticsearchPersistenceServiceTest {
     }
 
     @Test
+    @Ignore
     public void readWriteTest() {
 
         //given
